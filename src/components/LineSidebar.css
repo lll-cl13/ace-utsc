@@ -1,0 +1,107 @@
+.line-sidebar {
+  --accent-color: #004192;
+  --text-color: #c4c4c4;
+  --marker-color: #6c6c6c;
+  --marker-length: 8px;
+  --marker-gap: 0px;
+  --tick-scale: 0.5;
+  --max-shift: 30px;
+  --item-gap: 20px;
+  --font-size: 1.1rem;
+  --smoothing: 100ms;
+
+  position: relative;
+  display: flex;
+}
+
+.line-sidebar--markers {
+  padding-top: calc(var(--marker-length) + var(--marker-gap) + 4px);
+}
+
+.line-sidebar__list {
+  list-style: none;
+  margin: 0;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: row;
+  gap: var(--item-gap);
+  align-items: flex-end;
+}
+
+/* --effect (0..1) is driven per item by a rAF lerp in JS, so every derived
+   property below reads the same continuously-animating value and stays in
+   step, with no CSS transitions to stagger. */
+.line-sidebar__item {
+  position: relative;
+  cursor: pointer;
+}
+
+/* Widen the pointer target so items react a touch before the cursor arrives */
+.line-sidebar__item::before {
+  content: '';
+  position: absolute;
+  inset: -48px -6px;
+}
+
+.line-sidebar__label {
+  position: relative;
+  display: inline-flex;
+  align-items: baseline;
+  font-size: var(--font-size);
+  line-height: 1.2;
+  color: color-mix(in srgb, var(--accent-color) calc(var(--effect, 0) * 100%), var(--text-color));
+  transform: translateY(calc(var(--effect, 0) * -var(--max-shift)));
+}
+
+.line-sidebar__index {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  margin-right: 0.6rem;
+  font-size: 0.85em;
+  opacity: calc(0.55 + var(--effect, 0) * 0.45);
+}
+
+.line-sidebar__marker {
+  position: absolute;
+  left: 50%;
+  top: calc(-1 * var(--marker-length) - var(--marker-gap) - 4px);
+  width: 1px;
+  height: var(--marker-length);
+  background-color: color-mix(in srgb, var(--accent-color) calc(var(--effect, 0) * 100%), var(--marker-color));
+  transform-origin: center top;
+  transform: translateX(-50%) scaleY(calc(0.7 + var(--effect, 0) * 0.5));
+}
+
+.line-sidebar__tick {
+  position: absolute;
+  left: 50%;
+  top: -3px;
+  width: 1px;
+  height: 2px;
+  background-color: var(--marker-color);
+  opacity: 0.35;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+
+
+/* Short static tick after each item in the marker area */
+.line-sidebar--markers .line-sidebar__item::after {
+  content: '';
+  position: absolute;
+  left: calc(100% + var(--item-gap) / 2);
+  top: calc(-1 * var(--marker-length) - var(--marker-gap) - 4px);
+  width: 1px;
+  height: calc(var(--marker-length) * var(--tick-scale));
+  background-color: var(--marker-color);
+  opacity: 0.5;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+/* When enabled, the ticks grow with cursor proximity too */
+.line-sidebar--scale-tick .line-sidebar__item::after {
+  transform-origin: top center;
+  transform: translateX(-50%) scaleY(calc(0.7 + var(--effect, 0) * 0.6));
+  pointer-events: none;
+}
