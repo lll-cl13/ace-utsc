@@ -1,4 +1,5 @@
 import { useParams, Link } from 'react-router-dom'
+import GlareHover from '../components/GlareHover'
 
 const eventContents = {
   'ace-nationals-2025-2026': {
@@ -96,7 +97,7 @@ export default function EventDetail() {
 
   if (!ev) {
     return (
-      <div className="max-w-7xl mx-auto px-20 py-6">
+      <div className="max-w-7xl mx-auto px-6 md:px-10 py-6">
         <p>Event not found. <Link to="/events" className="underline">Back to Events</Link></p>
       </div>
     )
@@ -104,20 +105,36 @@ export default function EventDetail() {
 
   return (
     <div>
-      <div className="max-w-7xl mx-auto px-20 py-6 pb-2">
-        <Link to="/events" className="text-sm underline mb-4 inline-block">← All Events</Link>
-        <h1 className="text-4xl font-semibold mb-3">{ev.title}</h1>
+      <div className="max-w-7xl mx-auto px-6 md:px-10 py-6 pb-2">
+        <Link to="/events" className="text-sm underline mb-4 inline-block hover:text-[#00205B]">← All Events</Link>
+        <h1 className="text-4xl font-semibold tracking-[-0.8px] mb-3">{ev.title}</h1>
         <p className="mb-1 whitespace-pre-line">{ev.date}</p>
         <p className="mb-6">{ev.loc}</p>
       </div>
 
       {/* Full-bleed images */}
       {ev.imgs.map((src, i) => (
-        <img key={i} src={src} alt="" className="w-full mb-4" />
+        <div key={i} className="w-full overflow-hidden mb-4">
+          <GlareHover
+            width="100%"
+            height="auto"
+            background="transparent"
+            borderRadius="0"
+            borderColor="transparent"
+            glareColor="#ffffff"
+            glareOpacity={0.3}
+            glareAngle={-30}
+            glareSize={300}
+            transitionDuration={800}
+            playOnce={false}
+          >
+            <img src={src} alt="" className="w-full" />
+          </GlareHover>
+        </div>
       ))}
 
-      <div className="max-w-7xl mx-auto px-20 pt-2">
-        <div className="prose max-w-none text-lg whitespace-pre-line">{ev.body}</div>
+      <div className="max-w-7xl mx-auto px-6 md:px-10 pt-2">
+        <div className="prose max-w-none text-[15.5px] leading-[1.72] whitespace-pre-line">{ev.body}</div>
 
         {ev.extra && (
           <p className="mt-4">

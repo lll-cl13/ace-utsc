@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useState, useRef } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 
 const navLinks = [
   { label: 'About', to: '/about' },
@@ -14,36 +14,53 @@ const joinLinks = [
 export default function Navbar() {
   const [joinOpen, setJoinOpen] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const joinTimeout = useRef(null)
+  const location = useLocation()
+  const isHome = location.pathname === '/'
+  const isDarkPage = isHome || location.pathname === '/about'
+
+  const openJoin = () => {
+    if (joinTimeout.current) clearTimeout(joinTimeout.current)
+    setJoinOpen(true)
+  }
+
+  const closeJoin = () => {
+    joinTimeout.current = setTimeout(() => setJoinOpen(false), 150)
+  }
 
   return (
-    <nav className="bg-white border-b border-gray-200 sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-20 flex items-center justify-between h-16">
+    <nav className="sticky top-0 z-50">
+      <div className={`max-w-7xl mx-auto px-6 md:px-10 flex items-center justify-between h-16 ${isDarkPage ? '' : 'bg-white'}`}>
         <Link to="/" className="flex items-center gap-3">
           <img
             src="https://aceuoft.wordpress.com/wp-content/uploads/2023/09/ace-utsc-logo-1.png"
             alt="ACE UTSC"
             className="h-9 w-auto"
           />
-           <span className="text-sm tracking-tight text-[#00205B] hover:underline font-['League_Spartan',sans-serif]">ACE UTSC</span>
+            <span className={`text-sm tracking-tight hover:underline font-['League_Spartan',sans-serif] ${isDarkPage ? 'text-white' : 'text-[#00205B]'}`}>ACE UTSC</span>
         </Link>
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8 text-sm font-medium">
           {navLinks.map((l) => (
-            <Link key={l.to} to={l.to} className="hover:text-[#00205B] transition-colors">
+            <Link key={l.to} to={l.to} className={`transition-colors ${isDarkPage ? 'text-white hover:text-white/80' : 'hover:text-[#00205B]'}`}>
               {l.label}
             </Link>
           ))}
 
-          <div className="relative" onMouseEnter={() => setJoinOpen(true)} onMouseLeave={() => setJoinOpen(false)}>
-            <button className="flex items-center gap-1 hover:text-[#00205B] transition-colors">
+          <div className="relative" onMouseEnter={openJoin} onMouseLeave={closeJoin}>
+            <button className={`flex items-center gap-1 transition-colors ${isDarkPage ? 'text-white hover:text-white/80' : 'hover:text-[#00205B]'}`}>
               Join Us
               <span className="text-xs">▼</span>
             </button>
             {joinOpen && (
-              <div className="absolute left-0 mt-2 w-56 bg-white border border-gray-200 shadow-lg py-2 rounded">
+              <div
+                className={`absolute left-0 top-full mt-1 w-56 shadow-lg py-2 rounded ${isDarkPage ? 'bg-[#1a1720] text-white' : 'bg-white text-[#222]'}`}
+                onMouseEnter={openJoin}
+                onMouseLeave={closeJoin}
+              >
                 {joinLinks.map((l) => (
-                  <Link key={l.to} to={l.to} className="block px-20 py-2 text-sm hover:bg-gray-50">
+                  <Link key={l.to} to={l.to} className="block px-4 py-2 text-sm hover:bg-gray-50">
                     {l.label}
                   </Link>
                 ))}
@@ -51,17 +68,17 @@ export default function Navbar() {
             )}
           </div>
 
-          <Link to="/our-team-2025-2026" className="hover:text-[#00205B] transition-colors">
+          <Link to="/our-team-2025-2026" className={`transition-colors ${isDarkPage ? 'text-white hover:text-white/80' : 'hover:text-[#00205B]'}`}>
             Our Team
           </Link>
-          <Link to="/contact" className="hover:text-[#00205B] transition-colors">
+          <Link to="/contact" className={`transition-colors ${isDarkPage ? 'text-white hover:text-white/80' : 'hover:text-[#00205B]'}`}>
             Contact Us
           </Link>
         </div>
 
         {/* Mobile hamburger */}
         <button
-          className="md:hidden text-2xl"
+          className={`md:hidden text-2xl ${isDarkPage ? 'text-white' : ''}`}
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
         >
@@ -71,7 +88,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="md:hidden border-t bg-white px-20 py-4 flex flex-col gap-3 text-sm">
+        <div className={`md:hidden border-t px-6 md:px-10 py-4 flex flex-col gap-3 text-sm ${isDarkPage ? 'bg-[#120F17] text-white' : 'bg-white'}`}>
           {navLinks.map((l) => (
             <Link key={l.to} to={l.to} onClick={() => setMobileOpen(false)}>{l.label}</Link>
           ))}

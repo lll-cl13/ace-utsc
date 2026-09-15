@@ -1,0 +1,70 @@
+.screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.92);
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.logo {
+  width: min(20vw, 220px);
+  height: min(20vw, 220px);
+  border-radius: 50%;
+  object-fit: cover;
+  transform: scale(1);
+  opacity: 1;
+  transform-origin: center center;
+  /* Smooth ease-in-out fullscreen expansion */
+  transition:
+    transform 2.2s cubic-bezier(0.45, 0, 0.55, 1),
+    opacity 0.9s cubic-bezier(0.45, 0, 0.55, 1),
+    width 2.2s cubic-bezier(0.45, 0, 0.55, 1),
+    height 2.2s cubic-bezier(0.45, 0, 0.55, 1),
+    border-radius 2.2s cubic-bezier(0.45, 0, 0.55, 1),
+    box-shadow 2.2s cubic-bezier(0.45, 0, 0.55, 1);
+  will-change: transform, opacity, width, height, border-radius;
+}
+
+.hold {
+  width: min(28vw, 220px);
+  height: min(28vw, 220px);
+  border-radius: 0%;
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* Ease-in-out expand to cover the full viewport */
+.expand {
+  width: 50vw;
+  height: 50vh;
+  max-width: none;
+  max-height: none;
+  border-radius: 0;
+  object-fit: cover;
+  transform: scale(1.02);
+  opacity: 1;
+  box-shadow: none;
+}
+
+/* Soft ease-in-out fade/scale out before main app */
+.exit {
+  width: 50vw;
+  height: 50vh;
+  max-width: none;
+  max-height: none;
+  border-radius: 0;
+  object-fit: cover;
+  transform: scale(1.12);
+  opacity: 0;
+  box-shadow: none;
+  transition:
+    transform 1s cubic-bezier(0.45, 0, 0.55, 1),
+    opacity 1s cubic-bezier(0.45, 0, 0.55, 1),
+    width 0.01s linear,
+    height 0.01s linear,
+    border-radius 0.01s linear;
+}

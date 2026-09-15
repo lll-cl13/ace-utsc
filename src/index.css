@@ -25,11 +25,33 @@
 @import "tailwindcss";
 
 @layer base {
+  :root {
+    --font-sans: 'Montserrat', system-ui, sans-serif;
+    --font-heading: 'League Spartan', sans-serif;
+  }
+
   body, div, p, li, span, a, button, input, textarea {
-    font-family: 'Montserrat', system-ui, sans-serif;
+    font-family: var(--font-sans);
   }
 
   h1, h2, h3, h4, .heading {
-    font-family: 'League Spartan', sans-serif !important;
+    font-family: var(--font-heading) !important;
+  }
+
+  /* High readability defaults */
+  p, .prose {
+    line-height: 1.75;
+  }
+
+  .section {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  @media (min-width: 768px) {
+    .section {
+      padding-top: 5rem;
+      padding-bottom: 5rem;
+    }
   }
 }

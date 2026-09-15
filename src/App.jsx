@@ -9,12 +9,14 @@ import TeamHiring from './pages/TeamHiring'
 import OurTeam from './pages/OurTeam'
 import Contact from './pages/Contact'
 import EventDetail from './pages/EventDetail'
+import WelcomeScreen from './components/WelcomeScreen';
+import Cursor from './components/Cursor'
 
 function Layout({ children }) {
   return (
     <div className="min-h-screen bg-white text-[#222] flex flex-col">
       <Navbar />
-      <main className="flex-1">{children}</main>
+      <main className="flex-1 flex flex-col">{children}</main>
       <Footer />
     </div>
   )
@@ -33,10 +35,9 @@ export default function App() {
           <Route path="/team-hiring" element={<TeamHiring />} />
           <Route path="/our-team-2025-2026" element={<OurTeam />} />
           <Route path="/contact" element={<Contact />} />
-          {/* fallback for old paths */}
-          <Route path="/about-v2-draft" element={<About />} />
         </Routes>
       </Layout>
+      {/* <Cursor /> */}
     </BrowserRouter>
   )
 }

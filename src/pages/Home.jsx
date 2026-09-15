@@ -1,98 +1,193 @@
 import { Link } from 'react-router-dom'
+import ScrollReveal from '../components/ScrollReveal'
+import ScrollFloat from '../components/ScrollFloat'
+import SplitFlapText from './SplitFlapText'
+import GlareHover from '../components/GlareHover'
 
 export default function Home() {
   return (
     <div>
       {/* Hero */}
       <div
-        className="relative h-[70vh] md:h-[80vh] bg-cover bg-center flex items-center"
+        className="-mt-16 relative bg-cover bg-center pt-20 md:pt-28 pb-12 min-h-[100vh] md:min-h-[108vh]"
         style={{ backgroundImage: "url('https://aceuoft.wordpress.com/wp-content/uploads/2023/08/background-tower-1.jpeg')" }}
       >
-        <div className="absolute inset-0 bg-black/40" />
-        <div className="relative z-10 max-w-7xl mx-auto px-20 text-center text-white">
+        <div className="absolute inset-0 bg-black/30" />
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10 text-center text-white">
           <img
             src="https://aceuoft.wordpress.com/wp-content/uploads/2023/09/ace-utsc-logo-1.png"
             alt="ACE UTSC Logo"
-            className="mx-auto mb-6 h-16 md:h-20"
+            className="mx-auto mb-5 h-14 md:h-16"
           />
-          <h1 className="text-5xl md:text-6xl font-semibold tracking-tight mb-2">ACE UTSC</h1>
-          <p className="text-2xl md:text-3xl font-light tracking-wide">Achieve. Connect. Empower.</p>
+          <h1 className="mb-1">
+            <ScrollFloat
+              containerClassName="text-5xl md:text-6xl font-semibold tracking-[-1.5px]"
+              scrollStart="top bottom+=50%"
+              scrollEnd="bottom bottom"
+            >
+              ACE UTSC
+            </ScrollFloat>
+          </h1>
+          <div className="mt-6">
+            <ScrollFloat
+              containerClassName="text-[21px] md:text-3xl font-normal tracking-[-0.3px]"
+              scrollStart="top bottom+=50%"
+              scrollEnd="bottom bottom"
+            >
+              Achieve. Connect. Empower.
+            </ScrollFloat>
+          </div>
+        </div>
+
+        {/* Who We Are — refined placement, still in hero flow */}
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10 pt-16 md:pt-20 text-white">
+          <ScrollReveal
+            baseRotation={0.5}
+            containerClassName="text-2xl md:text-[27px] font-semibold mb-3 tracking-[-0.4px]"
+          >
+            Who We Are
+          </ScrollReveal>
+          <ScrollReveal
+            baseRotation={0}
+            baseOpacity={0.08}
+            containerClassName="max-w-3xl text-[15px] md:text-[15.5px] leading-[1.72] mb-0 tracking-[-0.1px]"
+          >
+            We are dedicated to offering real world practice for students. Our mission is to transform classroom knowledge into practical expertise and empower students to strengthen their skills and get ready for the real world.
+          </ScrollReveal>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-20 py-6">
-        {/* Who We Are */}
-        <h2 className="text-3xl font-semibold mb-4">Who We Are</h2>
-        <p className="text-lg leading-relaxed mb-8">
-          We are dedicated to offering <strong>real world practice</strong> for students. Our mission is to transform <strong>classroom knowledge</strong> into <strong>practical expertise</strong> and empowering students to strengthen their skills and get ready for the real world.
-        </p>
-
-        <div className="text-center mb-8">
+      <div className="max-w-7xl mx-auto px-6 md:px-10 pt-8">
+        <div className="text-center mb-10">
           <Link
             to="/ace-member"
-            className="inline-block px-20 py-3 bg-[#00205B] text-white font-medium rounded hover:bg-[#001a47] transition"
+            className="inline-flex items-center px-5 py-3 sm:px-6 sm:py-[14px] bg-[#00205B] text-white text-sm font-medium rounded-md hover:bg-[#001a47] active:bg-black transition-colors"
           >
-            Join Us Because
+            <SplitFlapText
+              words={["JOIN US BECAUSE", "JOIN US BECAUSE","JOIN US BECAUSE"]}
+              flipDuration={0.12}
+              stagger={0.06}
+              cycleDelay={2400}
+              charset="alphanumeric"
+              flipsPerChar={8}
+              tileColor="#111827"
+              textColor="#f8fafc"
+              tileRadius={8}
+              gap="clamp(2px,0.8vw,6px)"
+              fontSize="clamp(22px,6vw,64px)"
+              loop
+              padTo={12}
+            />
           </Link>
         </div>
 
-        {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center mb-8 bg-gray-100 py-10 px-6 rounded">
-          <div>
-            <div className="text-5xl font-semibold text-[#00205B]">100+</div>
-            <div className="mt-1 text-sm tracking-widest">UNDERGRADUATE STUDENTS</div>
+        {/* Stats — clean modern cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center mb-10 bg-[#f8f9fb] py-9 px-6 rounded-2xl">
+          <div className="py-1">
+            <div className="text-5xl font-semibold text-[#00205B] tracking-tighter">100+</div>
+            <div className="mt-2 text-[12px] font-medium tracking-[1.5px] uppercase text-[#00205B]/70">Undergraduate Students</div>
           </div>
-          <div>
-            <div className="text-5xl font-semibold text-[#00205B]">#50,000+</div>
-            <div className="mt-1 text-sm tracking-widest">PUBLIC AWARENESS INITIATIVES</div>
+          <div className="py-1">
+            <div className="text-5xl font-semibold text-[#00205B] tracking-tighter">50,000+</div>
+            <div className="mt-2 text-[12px] font-medium tracking-[1.5px] uppercase text-[#00205B]/70">Public Awareness Initiatives</div>
           </div>
-          <div>
-            <div className="text-5xl font-semibold text-[#00205B]"># 1</div>
-            <div className="mt-1 text-sm tracking-widest">LARGEST CASE COMPETITION IN CANADA</div>
+          <div className="py-1">
+            <div className="text-5xl font-semibold text-[#00205B] tracking-tighter">#1</div>
+            <div className="mt-2 text-[12px] font-medium tracking-[1.5px] uppercase text-[#00205B]/70">Largest Case Competition in Canada</div>
           </div>
         </div>
       </div>
 
-      {/* Full-bleed 3-column section */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-15 px-20 py-10">
-        {/* Achievements */}
-        <div>
-          <img
-            src="https://aceuoft.wordpress.com/wp-content/uploads/2025/09/img_5568-1-edited.jpg?w=1024"
-            alt="Achievements"
-            className="w-70 h-70 mb-4 rounded object-cover"
-          />
-          <h2 className="text-2xl font-semibold mb-2">Achievements</h2>
-          <p className="text-sm">
-            Our team has proudly secured <strong>Top 5</strong> in Fashion and Retail Management, <strong>3rd Place</strong> in both Restaurant and Food Services Management and Marketing Management, and <strong>2nd Place</strong> in Travel Management — showcasing our strength across diverse fields.
-          </p>
-        </div>
+      {/* Three column content — improved readability */}
+      <div className="max-w-7xl mx-auto px-6 md:px-10 pb-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-9">
+          {/* Achievements */}
+          <div>
+            <div className="w-full aspect-[4/3] mb-5 rounded-xl overflow-hidden">
+              <GlareHover
+                width="100%"
+                height="100%"
+                background="transparent"
+                borderRadius="0.5rem"
+                borderColor="transparent"
+                glareColor="#ffffff"
+                glareOpacity={0.25}
+                glareAngle={-30}
+                glareSize={280}
+                transitionDuration={700}
+                playOnce={false}
+              >
+                <img
+                  src="https://aceuoft.wordpress.com/wp-content/uploads/2025/09/img_5568-1-edited.jpg?w=1024"
+                  alt="Achievements"
+                  className="w-full h-full object-cover"
+                />
+              </GlareHover>
+            </div>
+            <h2 className="text-xl font-semibold mb-2.5 tracking-[-0.3px]">Achievements</h2>
+            <p className="text-[15px] leading-relaxed text-[#333]">
+              Our team has proudly secured <strong>Top 5</strong> in Fashion and Retail Management, <strong>3rd Place</strong> in both Restaurant and Food Services Management and Marketing Management, and <strong>2nd Place</strong> in Travel Management.
+            </p>
+          </div>
 
-        {/* Events */}
-        <div>
-          <img
-            src="https://aceuoft.wordpress.com/wp-content/uploads/2025/08/img_0204.jpeg?w=2048"
-            alt="Events"
-            className="w-70 h-70 mb-4 rounded object-cover"
-          />
-          <h2 className="text-2xl font-semibold mb-2">Events</h2>
-          <p className="text-sm">
-            This year, we have organized a series of events — including <strong>ACE Invitationals</strong>, <strong>ACE Chronicles</strong>, and <strong>ELA</strong> — all designed to equip students with the skills and experiences needed to succeed in the workplace.
-          </p>
-          <p className="mt-2 text-sm"><Link to="/events" className="underline">See all events →</Link></p>
-        </div>
+          {/* Events */}
+          <div>
+            <div className="w-full aspect-[4/3] mb-5 rounded-xl overflow-hidden">
+              <GlareHover
+                width="100%"
+                height="100%"
+                background="transparent"
+                borderRadius="0.5rem"
+                borderColor="transparent"
+                glareColor="#ffffff"
+                glareOpacity={0.25}
+                glareAngle={-30}
+                glareSize={280}
+                transitionDuration={700}
+                playOnce={false}
+              >
+                <img
+                  src="https://aceuoft.wordpress.com/wp-content/uploads/2025/08/img_0204.jpeg?w=2048"
+                  alt="Events"
+                  className="w-full h-full object-cover"
+                />
+              </GlareHover>
+            </div>
+            <h2 className="text-xl font-semibold mb-2.5 tracking-[-0.3px]">Events</h2>
+            <p className="text-[15px] leading-relaxed text-[#333]">
+              We run <strong>ACE Invitationals</strong>, <strong>ACE Chronicles</strong>, and <strong>ELA</strong> — events designed to equip students with the skills and experiences needed to succeed in the workplace.
+            </p>
+            <p className="mt-3 text-[14px]"><Link to="/events" className="underline decoration-1 underline-offset-2 hover:text-[#00205B]">See all events →</Link></p>
+          </div>
 
-        {/* Partnerships */}
-        <div>
-          <img
-            src="https://aceuoft.wordpress.com/wp-content/uploads/2025/08/541108638_1671807976817163_1531127534250298015_n-1.jpg"
-            alt="UTSC Campus"
-            className="w-70 h-70 mb-4 rounded object-cover"
-          />
-          <h2 className="text-2xl font-semibold mb-2">Partnerships</h2>
-          <p className="text-sm">
-            ACE UTSC is proud to be sponsored by a number of distinguished organizations, including <strong>EY</strong>, <strong>UofT MMPA</strong>, <strong>ICUBE UTM</strong>, and <strong>the CFA Society</strong>. We have also collaborated with RBC, Deloitte, York Region, AutoTrader Canada, and many more.
-          </p>
+          {/* Partnerships */}
+          <div>
+            <div className="w-full aspect-[4/3] mb-5 rounded-xl overflow-hidden">
+              <GlareHover
+                width="100%"
+                height="100%"
+                background="transparent"
+                borderRadius="0.5rem"
+                borderColor="transparent"
+                glareColor="#ffffff"
+                glareOpacity={0.25}
+                glareAngle={-30}
+                glareSize={280}
+                transitionDuration={700}
+                playOnce={false}
+              >
+                <img
+                  src="https://aceuoft.wordpress.com/wp-content/uploads/2025/08/541108638_1671807976817163_1531127534250298015_n-1.jpg"
+                  alt="UTSC Campus"
+                  className="w-full h-full object-cover"
+                />
+              </GlareHover>
+            </div>
+            <h2 className="text-xl font-semibold mb-2.5 tracking-[-0.3px]">Partnerships</h2>
+            <p className="text-[15px] leading-relaxed text-[#333]">
+              Proudly sponsored by <strong>EY</strong>, <strong>UofT MMPA</strong>, <strong>ICUBE UTM</strong>, and <strong>the CFA Society</strong>. We have also collaborated with RBC, Deloitte, York Region, AutoTrader, and more.
+            </p>
+          </div>
         </div>
       </div>
     </div>

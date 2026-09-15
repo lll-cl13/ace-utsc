@@ -1,3 +1,5 @@
+import GlareHover from '../components/GlareHover'
+
 const teams = {
   'Co-President': [
     { name: 'Maria Mahfuz', role: 'Co-President', img: 'https://aceuoft.wordpress.com/wp-content/uploads/2026/06/1.png', linkedin: 'https://www.linkedin.com/in/maria-mahfuz/' },
@@ -37,8 +39,8 @@ const teams = {
 
 export default function OurTeam() {
   return (
-    <div className="max-w-7xl mx-auto px-20 py-6">
-      <h1 className="text-4xl font-semibold mb-8">Our Team 2026-2027</h1>
+    <div className="max-w-7xl mx-auto px-6 md:px-10 py-6">
+      <h1 className="text-4xl font-semibold tracking-[-1px] mb-8">Our Team 2026-2027</h1>
 
       {Object.entries(teams).map(([dept, members]) => (
         <div key={dept} className="mb-8">
@@ -46,10 +48,26 @@ export default function OurTeam() {
            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-8">
             {members.map((m, idx) => (
               <div key={idx}>
-                <img src={m.img} alt={m.name} className="w-full mb-3 rounded" />
-                <a href={m.linkedin} target="_blank" rel="noreferrer" className="text-sm underline block">LinkedIn</a>
-                <div className="font-semibold mt-1">{m.name}</div>
-                <div className="text-sm text-gray-600">{m.role}</div>
+                 <div className="w-full overflow-hidden mb-3 rounded">
+                   <GlareHover
+                     width="100%"
+                     height="auto"
+                     background="transparent"
+                     borderRadius="0.25rem"
+                     borderColor="transparent"
+                     glareColor="#ffffff"
+                     glareOpacity={0.3}
+                     glareAngle={-30}
+                     glareSize={300}
+                     transitionDuration={800}
+                     playOnce={false}
+                   >
+                     <img src={m.img} alt={m.name} className="w-full" />
+                   </GlareHover>
+                 </div>
+                 <a href={m.linkedin} target="_blank" rel="noreferrer" className="text-[13px] underline block hover:text-[#00205B]">LinkedIn</a>
+                 <div className="font-semibold mt-1 tracking-tight">{m.name}</div>
+                 <div className="text-[13px] text-gray-600 mt-px">{m.role}</div>
               </div>
             ))}
           </div>

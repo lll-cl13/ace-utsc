@@ -1,4 +1,7 @@
 import { Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
+import TextLoop from '../components/TextLoop'
+import GlareHover from '../components/GlareHover'
 
 const events2025 = [
   {
@@ -72,46 +75,166 @@ const events2023 = [
   },
 ]
 
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.12,
+    },
+  },
+}
+
+const cardVariants = {
+  hidden: { 
+    opacity: 0, 
+    scale: 0.85, 
+    y: 40 
+  },
+  visible: { 
+    opacity: 1, 
+    scale: 1, 
+    y: 0,
+    transition: { 
+      duration: 0.7, 
+      ease: [0.25, 0.1, 0.25, 1] 
+    }
+  },
+}
+
+const textVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { duration: 0.5, ease: "easeOut" }
+  },
+}
+
 export default function Events() {
   return (
-    <div className="max-w-7xl mx-auto px-20 py-6">
-      <h1 className="text-4xl font-semibold mb-10">Events</h1>
+    <>
+      <TextLoop
+        text="ACE UTSC"
+        shape="wave"
+        speed={90}
+        direction="forward"
+        separator="✦"
+        curviness={68}
+        fontSize={46}
+        fontWeight={800}
+        letterSpacing={0.5}
+        uppercase
+        color="#ffffff"
+        ribbon
+        ribbonColor="#09346A"
+          ribbonWidth={86}
+          pauseOnHover={false}
+        />
 
-      <h2 className="text-2xl font-semibold mb-4">2025 – 2026</h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        {events2025.map(ev => (
+      <div className="max-w-7xl mx-auto px-6 md:px-10 py-6">
+        <motion.h1 
+        className="text-4xl font-semibold tracking-[-1px] mb-10"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false }}
+        transition={{ duration: 0.6 }}
+      >
+        Events
+      </motion.h1>
+
+      <YearSection title="2025 – 2026" events={events2025} />
+      <YearSection title="2024 – 2025" events={events2024} />
+      <YearSection title="2023 – 2024" events={events2023} />
+      </div>
+    </>
+  )
+}
+
+function YearSection({ title, events }) {
+  return (
+    <div className="mb-10">
+      <RollingTitle text={title} />
+
+      <motion.div 
+        className="grid grid-cols-1 md:grid-cols-3 gap-6"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.2 }}
+      >
+        {events.map((ev) => (
           <EventCard key={ev.slug} {...ev} />
         ))}
-      </div>
-
-      <h2 className="text-2xl font-semibold mb-4">2024 – 2025</h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        {events2024.map(ev => (
-          <EventCard key={ev.slug} {...ev} />
-        ))}
-      </div>
-
-      <h2 className="text-2xl font-semibold mb-4">2023 – 2024</h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {events2023.map(ev => (
-          <EventCard key={ev.slug} {...ev} />
-        ))}
-      </div>
+      </motion.div>
     </div>
   )
 }
 
 function EventCard({ slug, title, date, location, img }) {
   return (
-    <div>
-      <Link to={`/events/${slug}`}>
-        <img src={img} alt={title} className="w-full rounded aspect-video object-cover mb-3 hover:opacity-65 transition" />
+    <motion.div 
+      variants={cardVariants}
+      whileHover={{ scale: 1.015 }}
+      className="group"
+    >
+      <Link to={`/events/${slug}`} className="block overflow-hidden rounded">
+        <div className="w-full aspect-video overflow-hidden">
+          <GlareHover
+            width="100%"
+            height="100%"
+            background="transparent"
+            borderRadius="0"
+            borderColor="transparent"
+            glareColor="#ffffff"
+            glareOpacity={0.3}
+            glareAngle={-30}
+            glareSize={300}
+            transitionDuration={800}
+            playOnce={false}
+          >
+            <motion.img 
+              src={img} 
+              alt={title} 
+              className="w-full h-full object-cover"
+              whileHover={{ scale: 1.06 }}
+              transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+            />
+          </GlareHover>
+        </div>
       </Link>
-      <h3 className="text-xl font-semibold">
-        <Link to={`/events/${slug}`}>{title}</Link>
-      </h3>
-      <p className="text-sm mt-1">📅 {date}</p>
-      <p className="text-sm">📍 {location}</p>
+
+      <div className="mt-4">
+        <h3 className="text-xl font-semibold leading-tight">
+          <Link to={`/events/${slug}`} className="hover:underline">
+            {title}
+          </Link>
+        </h3>
+        
+        <motion.div 
+          variants={textVariants}
+          className="mt-2 space-y-1 text-sm text-gray-600"
+        >
+          <p>📅 {date}</p>
+          <p>📍 {location}</p>
+        </motion.div>
+      </div>
+    </motion.div>
+  )
+}
+
+function RollingTitle({ text }) {
+  return (
+    <div className="overflow-hidden mb-6 h-8 relative">
+      <motion.div 
+        className="flex flex-col"
+        initial={{ y: 0 }}
+        whileInView={{ y: "-50%" }}
+        viewport={{ once: false, amount: 0.5 }}
+        transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <h2 className="text-2xl font-semibold leading-none">{text}</h2>
+        <h2 className="text-2xl font-semibold leading-none">{text}</h2>
+      </motion.div>
     </div>
   )
 }
