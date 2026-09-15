@@ -113,6 +113,22 @@ const textVariants = {
 export default function Events() {
   return (
     <>
+      <div className="max-w-7xl mx-auto px-10 py-6">
+        <motion.h1 
+        className="text-4xl font-semibold mb-10"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false }}
+        transition={{ duration: 0.6 }}
+      >
+        Events
+      </motion.h1>
+
+      <YearSection title="2025 – 2026" events={events2025} />
+      <YearSection title="2024 – 2025" events={events2024} />
+      <YearSection title="2023 – 2024" events={events2023} />
+      </div>
+
       <TextLoop
         text="ACE UTSC"
         shape="wave"
@@ -130,22 +146,6 @@ export default function Events() {
           ribbonWidth={86}
           pauseOnHover={false}
         />
-
-      <div className="max-w-7xl mx-auto px-6 md:px-10 py-6">
-        <motion.h1 
-        className="text-4xl font-semibold tracking-[-1px] mb-10"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false }}
-        transition={{ duration: 0.6 }}
-      >
-        Events
-      </motion.h1>
-
-      <YearSection title="2025 – 2026" events={events2025} />
-      <YearSection title="2024 – 2025" events={events2024} />
-      <YearSection title="2023 – 2024" events={events2023} />
-      </div>
     </>
   )
 }

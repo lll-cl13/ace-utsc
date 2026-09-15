@@ -9,28 +9,36 @@ export default function Home() {
     <div>
       {/* Hero */}
       <div
-        className="-mt-16 relative bg-cover bg-center pt-20 md:pt-28 pb-12 min-h-[100vh] md:min-h-[108vh]"
+        className="-mt-16 relative bg-cover bg-center min-h-[100dvh] flex flex-col"
         style={{ backgroundImage: "url('https://aceuoft.wordpress.com/wp-content/uploads/2023/08/background-tower-1.jpeg')" }}
       >
         <div className="absolute inset-0 bg-black/30" />
-        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10 text-center text-white">
-          <img
-            src="https://aceuoft.wordpress.com/wp-content/uploads/2023/09/ace-utsc-logo-1.png"
-            alt="ACE UTSC Logo"
-            className="mx-auto mb-5 h-14 md:h-16"
-          />
-          <h1 className="mb-1">
+
+        {/* Logo + "ACE UTSC" centered around 50% */}
+        <div className="flex-1 flex items-center justify-center relative z-10">
+          <div className="text-center text-white">
+            <img
+              src="https://aceuoft.wordpress.com/wp-content/uploads/2023/09/ace-utsc-logo-1.png"
+              alt="ACE UTSC Logo"
+              className="mx-auto mb-4 h-16 md:h-20"
+            />
+            <h1>
+              <ScrollFloat
+                containerClassName="text-6xl md:text-7xl font-semibold tracking-[-2px]"
+                scrollStart="top bottom+=50%"
+                scrollEnd="bottom bottom"
+              >
+                ACE UTSC
+              </ScrollFloat>
+            </h1>
+          </div>
+        </div>
+
+        {/* "Achieve. Connect. Empower." at the bottom */}
+        <div className="relative z-10 pb-10 md:pb-14">
+          <div className="max-w-7xl mx-auto px-6 md:px-10 text-center text-white">
             <ScrollFloat
-              containerClassName="text-5xl md:text-6xl font-semibold tracking-[-1.5px]"
-              scrollStart="top bottom+=50%"
-              scrollEnd="bottom bottom"
-            >
-              ACE UTSC
-            </ScrollFloat>
-          </h1>
-          <div className="mt-6">
-            <ScrollFloat
-              containerClassName="text-[21px] md:text-3xl font-normal tracking-[-0.3px]"
+              containerClassName="text-2xl md:text-3xl font-normal tracking-[-0.2px]"
               scrollStart="top bottom+=50%"
               scrollEnd="bottom bottom"
             >
@@ -38,26 +46,26 @@ export default function Home() {
             </ScrollFloat>
           </div>
         </div>
-
-        {/* Who We Are — refined placement, still in hero flow */}
-        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10 pt-16 md:pt-20 text-white">
-          <ScrollReveal
-            baseRotation={0.5}
-            containerClassName="text-2xl md:text-[27px] font-semibold mb-3 tracking-[-0.4px]"
-          >
-            Who We Are
-          </ScrollReveal>
-          <ScrollReveal
-            baseRotation={0}
-            baseOpacity={0.08}
-            containerClassName="max-w-3xl text-[15px] md:text-[15.5px] leading-[1.72] mb-0 tracking-[-0.1px]"
-          >
-            We are dedicated to offering real world practice for students. Our mission is to transform classroom knowledge into practical expertise and empower students to strengthen their skills and get ready for the real world.
-          </ScrollReveal>
-        </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 md:px-10 pt-8">
+      {/* Who We Are - now below hero on light background */}
+      <div className="max-w-7xl mx-auto px-6 md:px-10 py-12 md:py-16 text-[#222]">
+        <ScrollReveal
+          baseRotation={0.5}
+          containerClassName="text-2xl md:text-[27px] font-semibold mb-3 tracking-[-0.4px]"
+        >
+          Who We Are
+        </ScrollReveal>
+        <ScrollReveal
+          baseRotation={0}
+          baseOpacity={0.08}
+          containerClassName="max-w-3xl text-[15px] md:text-[15.5px] leading-[1.72] mb-0 tracking-[-0.1px] text-[#333]"
+        >
+          We are dedicated to offering real world practice for students. Our mission is to transform classroom knowledge into practical expertise and empower students to strengthen their skills and get ready for the real world.
+        </ScrollReveal>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-6 md:px-10 pt-4">
         <div className="text-center mb-10">
           <Link
             to="/ace-member"
