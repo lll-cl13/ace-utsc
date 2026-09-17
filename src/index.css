@@ -34,6 +34,10 @@
     font-family: var(--font-sans);
   }
 
+  body {
+    background-color: white;
+  }
+
   h1, h2, h3, h4, .heading {
     font-family: var(--font-heading) !important;
   }

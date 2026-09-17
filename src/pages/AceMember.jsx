@@ -29,7 +29,7 @@ const itemVariants = {
 
 const carouselItems = [
   {
-    image: 'https://aceuoft.wordpress.com/wp-content/uploads/2024/09/colours-7.png',
+    image: 'img/Member1.jpg',
     alt: 'ACE UTSC Banner',
   },
   {
@@ -49,7 +49,7 @@ const carouselItems = [
 export default function AceMember() {
   return (
     <div>
-      <div className="max-w-7xl mx-auto px-6 md:px-10 py-6 pb-2">
+      <div className="px-[45px] py-6 pb-2">
         <motion.h1 
           className="text-4xl font-semibold tracking-[-1px] mb-6"
           initial={{ opacity: 1, y: 20 }}
@@ -86,7 +86,7 @@ export default function AceMember() {
         />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 md:px-10">
+      <div className="px-[45px] pb-16 md:pb-24">
         <motion.div
           variants={containerVariants}
         initial="hidden"

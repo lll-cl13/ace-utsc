@@ -8,7 +8,7 @@ export default function Footer() {
         style={{ backgroundImage: "url('https://aceuoft.wordpress.com/wp-content/uploads/2025/08/utsc_campus.jpeg')" }}
       />
       <div className="absolute inset-0 bg-black/50" />
-      <div className="relative max-w-7xl mx-auto px-6 md:px-10 py-8 grid md:grid-cols-2 gap-y-6">
+      <div className="relative px-[45px] py-8 flex flex-col md:flex-row md:justify-between gap-y-8">
         <div>
           <div className="flex items-center gap-2 mb-4">
             <img

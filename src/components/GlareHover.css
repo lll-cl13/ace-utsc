@@ -46,12 +46,19 @@
 
 
 .glare-hover--play-once::before {
-  transition: none;
+  animation: glare-sweep var(--gh-duration) ease forwards;
 }
 
+@keyframes glare-sweep {
+  to {
+    background-position:
+      100% 100%,
+      0 0;
+  }
+}
 
 .glare-hover--play-once:hover::before {
-  transition: var(--gh-duration) ease;
+  animation: none;
   background-position:
     100% 100%,
     0 0;

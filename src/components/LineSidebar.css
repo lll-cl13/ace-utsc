@@ -2,10 +2,10 @@
   --accent-color: #004192;
   --text-color: #c4c4c4;
   --marker-color: #6c6c6c;
-  --marker-length: 8px;
+  --marker-length: 6px;
   --marker-gap: 0px;
-  --tick-scale: 0.5;
-  --max-shift: 30px;
+  --tick-scale: 0.7;
+  --max-shift: 40px;
   --item-gap: 20px;
   --font-size: 1.1rem;
   --smoothing: 100ms;
@@ -14,8 +14,11 @@
   display: flex;
 }
 
-.line-sidebar--markers {
+.line-sidebar--markers.line-sidebar--horizontal {
   padding-top: calc(var(--marker-length) + var(--marker-gap) + 4px);
+}
+.line-sidebar--markers.line-sidebar--vertical {
+  padding-left: calc(var(--marker-length) + var(--marker-gap) + 4px);
 }
 
 .line-sidebar__list {
@@ -23,9 +26,21 @@
   margin: 0;
   padding: 0 1rem;
   display: flex;
-  flex-direction: row;
   gap: var(--item-gap);
+  position: relative;
+}
+.line-sidebar--horizontal .line-sidebar__list {
+  flex-direction: row;
   align-items: flex-end;
+}
+.line-sidebar--horizontal.line-sidebar--spread .line-sidebar__list {
+  justify-content: space-between;
+  width: 100%;
+  padding: 0;
+}
+.line-sidebar--vertical .line-sidebar__list {
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 /* --effect (0..1) is driven per item by a rAF lerp in JS, so every derived
@@ -37,10 +52,11 @@
 }
 
 /* Widen the pointer target so items react a touch before the cursor arrives */
-.line-sidebar__item::before {
-  content: '';
-  position: absolute;
+.line-sidebar--horizontal .line-sidebar__item::before {
   inset: -48px -6px;
+}
+.line-sidebar--vertical .line-sidebar__item::before {
+  inset: -6px -48px;
 }
 
 .line-sidebar__label {
@@ -50,7 +66,19 @@
   font-size: var(--font-size);
   line-height: 1.2;
   color: color-mix(in srgb, var(--accent-color) calc(var(--effect, 0) * 100%), var(--text-color));
+}
+.line-sidebar__text {
+  font-weight: calc(400 + var(--effect, 0) * 300);
+  text-decoration: underline;
+  text-decoration-thickness: calc(var(--effect, 0) * 2.5px);
+  text-underline-offset: 4px;
+}
+
+.line-sidebar--horizontal .line-sidebar__text {
   transform: translateY(calc(var(--effect, 0) * -var(--max-shift)));
+}
+.line-sidebar--vertical .line-sidebar__text {
+  transform: translateX(calc(var(--effect, 0) * var(--max-shift)));
 }
 
 .line-sidebar__index {
@@ -60,7 +88,7 @@
   opacity: calc(0.55 + var(--effect, 0) * 0.45);
 }
 
-.line-sidebar__marker {
+.line-sidebar--horizontal .line-sidebar__marker {
   position: absolute;
   left: 50%;
   top: calc(-1 * var(--marker-length) - var(--marker-gap) - 4px);
@@ -68,40 +96,49 @@
   height: var(--marker-length);
   background-color: color-mix(in srgb, var(--accent-color) calc(var(--effect, 0) * 100%), var(--marker-color));
   transform-origin: center top;
-  transform: translateX(-50%) scaleY(calc(0.7 + var(--effect, 0) * 0.5));
+  transform: translateX(-50%) scaleY(calc(0.5 + var(--effect, 0) * 1.2));
+}
+.line-sidebar--vertical .line-sidebar__marker {
+  position: absolute;
+  top: 50%;
+  left: calc(-1 * var(--marker-length) - var(--marker-gap));
+  height: 1px;
+  width: var(--marker-length);
+  background-color: color-mix(in srgb, var(--accent-color) calc(var(--effect, 0) * 100%), var(--marker-color));
+  transform-origin: left center;
+  transform: translateY(-50%) scaleX(calc(0.5 + var(--effect, 0) * 1.2));
 }
 
-.line-sidebar__tick {
+/* Minor strokes (ticks between items), positioned via JS. When scaleTick, their size and color animate via shared --effect from preceding item. */
+.line-sidebar__minor-tick {
   position: absolute;
-  left: 50%;
-  top: -3px;
-  width: 1px;
-  height: 2px;
-  background-color: var(--marker-color);
+  background-color: color-mix(in srgb, var(--accent-color) calc(var(--effect, 0) * 100%), var(--marker-color));
   opacity: 0.35;
-  transform: translateX(-50%);
   pointer-events: none;
 }
-
-
-
-/* Short static tick after each item in the marker area */
-.line-sidebar--markers .line-sidebar__item::after {
-  content: '';
-  position: absolute;
-  left: calc(100% + var(--item-gap) / 2);
+.line-sidebar--horizontal .line-sidebar__minor-tick {
   top: calc(-1 * var(--marker-length) - var(--marker-gap) - 4px);
   width: 1px;
   height: calc(var(--marker-length) * var(--tick-scale));
-  background-color: var(--marker-color);
-  opacity: 0.5;
-  transform: translateX(-50%);
-  pointer-events: none;
+  transform: translateX(-0.5px);
+}
+.line-sidebar--vertical .line-sidebar__minor-tick {
+  left: calc(-1 * var(--marker-length) - var(--marker-gap));
+  height: 1px;
+  width: calc(var(--marker-length) * var(--tick-scale));
+  transform: translateY(-0.5px);
 }
 
-/* When enabled, the ticks grow with cursor proximity too */
-.line-sidebar--scale-tick .line-sidebar__item::after {
-  transform-origin: top center;
-  transform: translateX(-50%) scaleY(calc(0.7 + var(--effect, 0) * 0.6));
-  pointer-events: none;
+/* Scale ticks: grow the inter-item ticks using the *same* --effect as the preceding item.
+   Uses transform scale so growth is continuous and origin-anchored like main markers.
+   Accent color is also mixed via the shared --effect (set in JS rAF). */
+.line-sidebar--scale-tick.line-sidebar--horizontal .line-sidebar__minor-tick {
+  transform: translateX(-0.5px) scaleY(calc(0.4 + var(--effect, 0) * 1.6));
+  transform-origin: center top;
 }
+.line-sidebar--scale-tick.line-sidebar--vertical .line-sidebar__minor-tick {
+  transform: translateY(-0.5px) scaleX(calc(0.4 + var(--effect, 0) * 1.6));
+  transform-origin: left center;
+}
+
+

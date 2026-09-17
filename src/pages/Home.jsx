@@ -1,22 +1,28 @@
 import { Link } from 'react-router-dom'
 import ScrollReveal from '../components/ScrollReveal'
 import ScrollFloat from '../components/ScrollFloat'
-import SplitFlapText from './SplitFlapText'
+import SplitFlapText from '../components/SplitFlapText'
 import GlareHover from '../components/GlareHover'
+import GradientText from '../components/GradientText'
+import ProfileCard from '../components/ProfileCard'
+import AeroShards from '../components/AeroShards'
+import { motion } from 'framer-motion'
 
 export default function Home() {
   return (
-    <div>
-      {/* Hero */}
+    <>
+      {/* Stable fixed background layer (above body bg, below content) */}
       <div
-        className="-mt-16 relative bg-cover bg-center min-h-[100dvh] flex flex-col"
+        className="fixed inset-0 z-[0] bg-cover bg-center pointer-events-none"
         style={{ backgroundImage: "url('https://aceuoft.wordpress.com/wp-content/uploads/2023/08/background-tower-1.jpeg')" }}
-      >
-        <div className="absolute inset-0 bg-black/30" />
+      />
+      <div className="fixed inset-0 z-[0] bg-black/30 pointer-events-none" />
 
-        {/* Logo + "ACE UTSC" centered around 50% */}
-        <div className="flex-1 flex items-center justify-center relative z-10">
-          <div className="text-center text-white">
+      <div className="-mt-16 relative z-[10]">
+        {/* Hero content */}
+        {/* Phase 1: Logo + big ACE UTSC (full screen) */}
+        <div className="h-screen flex items-center justify-center text-white">
+          <div className="text-center">
             <img
               src="https://aceuoft.wordpress.com/wp-content/uploads/2023/09/ace-utsc-logo-1.png"
               alt="ACE UTSC Logo"
@@ -34,83 +40,117 @@ export default function Home() {
           </div>
         </div>
 
-        {/* "Achieve. Connect. Empower." at the bottom */}
-        <div className="relative z-10 pb-10 md:pb-14">
-          <div className="max-w-7xl mx-auto px-6 md:px-10 text-center text-white">
-            <ScrollFloat
-              containerClassName="text-2xl md:text-3xl font-normal tracking-[-0.2px]"
-              scrollStart="top bottom+=50%"
+        {/* Phase 2: Achieve. Connect. Empower. (full screen) */}
+        <div className="h-screen flex items-center justify-center text-white">
+          <div className="px-[45px] text-center">
+            <ScrollReveal
+              containerClassName="text-2xl md:text-6xl font-semibold font-normal tracking-[-0.2px]"
+              scrollStart="top bottom+=20%"
               scrollEnd="bottom bottom"
             >
-              Achieve. Connect. Empower.
-            </ScrollFloat>
+              <GradientText
+                colors={["#FFFFFF", "#03BBFF", "#FFFFFF"]}
+                animationSpeed={3}
+                showBorder={false}
+                className="custom-class"
+              >
+                Achieve. Connect. Empower.
+              </GradientText>
+            </ScrollReveal>
           </div>
         </div>
-      </div>
 
-      {/* Who We Are - now below hero on light background */}
-      <div className="max-w-7xl mx-auto px-6 md:px-10 py-12 md:py-16 text-[#222]">
-        <ScrollReveal
-          baseRotation={0.5}
-          containerClassName="text-2xl md:text-[27px] font-semibold mb-3 tracking-[-0.4px]"
-        >
-          Who We Are
-        </ScrollReveal>
-        <ScrollReveal
-          baseRotation={0}
-          baseOpacity={0.08}
-          containerClassName="max-w-3xl text-[15px] md:text-[15.5px] leading-[1.72] mb-0 tracking-[-0.1px] text-[#333]"
-        >
-          We are dedicated to offering real world practice for students. Our mission is to transform classroom knowledge into practical expertise and empower students to strengthen their skills and get ready for the real world.
-        </ScrollReveal>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-6 md:px-10 pt-4">
-        <div className="text-center mb-10">
-          <Link
-            to="/ace-member"
-            className="inline-flex items-center px-5 py-3 sm:px-6 sm:py-[14px] bg-[#00205B] text-white text-sm font-medium rounded-md hover:bg-[#001a47] active:bg-black transition-colors"
-          >
-            <SplitFlapText
-              words={["JOIN US BECAUSE", "JOIN US BECAUSE","JOIN US BECAUSE"]}
-              flipDuration={0.12}
-              stagger={0.06}
-              cycleDelay={2400}
-              charset="alphanumeric"
-              flipsPerChar={8}
-              tileColor="#111827"
-              textColor="#f8fafc"
-              tileRadius={8}
-              gap="clamp(2px,0.8vw,6px)"
-              fontSize="clamp(22px,6vw,64px)"
-              loop
-              padTo={12}
-            />
-          </Link>
-        </div>
-
-        {/* Stats — clean modern cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center mb-10 bg-[#f8f9fb] py-9 px-6 rounded-2xl">
-          <div className="py-1">
-            <div className="text-5xl font-semibold text-[#00205B] tracking-tighter">100+</div>
-            <div className="mt-2 text-[12px] font-medium tracking-[1.5px] uppercase text-[#00205B]/70">Undergraduate Students</div>
-          </div>
-          <div className="py-1">
-            <div className="text-5xl font-semibold text-[#00205B] tracking-tighter">50,000+</div>
-            <div className="mt-2 text-[12px] font-medium tracking-[1.5px] uppercase text-[#00205B]/70">Public Awareness Initiatives</div>
-          </div>
-          <div className="py-1">
-            <div className="text-5xl font-semibold text-[#00205B] tracking-tighter">#1</div>
-            <div className="mt-2 text-[12px] font-medium tracking-[1.5px] uppercase text-[#00205B]/70">Largest Case Competition in Canada</div>
+        {/* Phase 3: Who We Are (full screen + extra scroll space so fixed bg picture 
+            stays visible until the reveal animation is fully complete and the text 
+            has scrolled up near the top of the screen ~10%) */}
+        <div className="min-h-screen pb-[55vh] flex items-center justify-center text-white">
+          <div className="px-[45px] text-center">
+            <ScrollReveal
+              baseRotation={0}
+              containerClassName="text-4xl md:text-5xl font-semibold mb-5 tracking-[-0.6px]"
+            >
+              Who We Are
+            </ScrollReveal>
+            <ScrollReveal
+              baseRotation={0}
+              baseOpacity={0.08}
+              containerClassName="text-lg md:text-2xl leading-relaxed tracking-[-0.1px] text-white/90"
+            >
+              We are dedicated to offering real world practice for students. Our mission is to transform classroom knowledge into practical expertise and empower students to strengthen their skills and get ready for the real world.
+            </ScrollReveal>
+           </div>
           </div>
         </div>
-      </div>
+ 
+        <div className="bg-white relative z-[10]">
+           {/* Join + Stats */}
+            <div className="px-[45px] pt-50 pb-50">
+              <div className="text-center mb-10">
+                <Link
+                  to="/ace-member"
+                  className="inline-flex items-center transition-colors"
+                >
+                  <SplitFlapText
+                    words={["JOIN US BECAUSE", "JOIN US BECAUSE","JOIN US BECAUSE"]}
+                    flipDuration={0.12}
+                    stagger={0.06}
+                    cycleDelay={2400}
+                    charset="alphanumeric"
+                    flipsPerChar={8}
+                    tileColor="#111827"
+                    textColor="#f8fafc"
+                    tileRadius={8}
+                    gap="clamp(2px,0.8vw,6px)"
+                    fontSize="clamp(24px,6.5vw,72px)"
+                    loop
+                    padTo={12}
+                  />
+              </Link>
+            </div>
 
-      {/* Three column content — improved readability */}
-      <div className="max-w-7xl mx-auto px-6 md:px-10 pb-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-9">
+              {/* Stats grid */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-15 px-15 pt-20 pb-20">
+                {[
+                  { src: '/img/UNDERGRADUATESTUDENTS.jpeg', alt: 'Undergraduate Students' },
+                  { src: '/img/PUBLICAWARENESSINITIATIVES.jpeg', alt: 'Public Awareness Initiatives' },
+                  { src: '/img/LARGESTCASECOMPETITION.png', alt: 'Largest Case Competition in Canada' }
+                ].map((item, index) => (
+                   <motion.div
+                     key={index}
+                      className="stat-card rounded-2xl aspect-[19/25] w-full"
+                     initial={{ opacity: 0, y: 50 }}
+                     whileInView={{ opacity: 1, y: 0 }}
+                     viewport={{ once: true, margin: '-80px' }}
+                     transition={{ duration: 2, delay: index * 0.12, ease: [0.21, 0.92, 0.25, 1] }}
+                   >
+                     <ProfileCard
+                       name=""
+                       title=""
+                       handle=""
+                       status=""
+                       contactText=""
+                       avatarUrl={item.src}
+                       showUserInfo={false}
+                       enableTilt={true}
+                       enableMobileTilt={true}
+                       onContactClick={() => {}}
+                       behindGlowEnabled={true}
+                       innerGradient="transparent"
+                       grainUrl="/img/GrainEffect.jpg"
+                       fullImageMode
+                       className="stat-profile-card w-full h-full"
+                     />
+                  </motion.div>
+                ))}
+              </div>
+         </div>
+
+       {/* Achievements, Events & Partnerships — one unified section */}
+         <div className="relative">
+           <div className="px-[45px] pt-6 pb-12 relative z-[1]">
+         <div className="grid grid-cols-1 md:grid-cols-3 gap-9 pb-50 pt-20">
           {/* Achievements */}
-          <div>
+          <div className="group">
             <div className="w-full aspect-[4/3] mb-5 rounded-xl overflow-hidden">
               <GlareHover
                 width="100%"
@@ -123,12 +163,12 @@ export default function Home() {
                 glareAngle={-30}
                 glareSize={280}
                 transitionDuration={700}
-                playOnce={false}
+                playOnce={true}
               >
                 <img
                   src="https://aceuoft.wordpress.com/wp-content/uploads/2025/09/img_5568-1-edited.jpg?w=1024"
                   alt="Achievements"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.1]"
                 />
               </GlareHover>
             </div>
@@ -139,7 +179,7 @@ export default function Home() {
           </div>
 
           {/* Events */}
-          <div>
+          <div className="group">
             <div className="w-full aspect-[4/3] mb-5 rounded-xl overflow-hidden">
               <GlareHover
                 width="100%"
@@ -152,12 +192,12 @@ export default function Home() {
                 glareAngle={-30}
                 glareSize={280}
                 transitionDuration={700}
-                playOnce={false}
+                playOnce={true}
               >
                 <img
                   src="https://aceuoft.wordpress.com/wp-content/uploads/2025/08/img_0204.jpeg?w=2048"
                   alt="Events"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.1]"
                 />
               </GlareHover>
             </div>
@@ -169,7 +209,7 @@ export default function Home() {
           </div>
 
           {/* Partnerships */}
-          <div>
+          <div className="group">
             <div className="w-full aspect-[4/3] mb-5 rounded-xl overflow-hidden">
               <GlareHover
                 width="100%"
@@ -182,12 +222,12 @@ export default function Home() {
                 glareAngle={-30}
                 glareSize={280}
                 transitionDuration={700}
-                playOnce={false}
+                playOnce={true}
               >
                 <img
                   src="https://aceuoft.wordpress.com/wp-content/uploads/2025/08/541108638_1671807976817163_1531127534250298015_n-1.jpg"
                   alt="UTSC Campus"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.1]"
                 />
               </GlareHover>
             </div>
@@ -195,9 +235,11 @@ export default function Home() {
             <p className="text-[15px] leading-relaxed text-[#333]">
               Proudly sponsored by <strong>EY</strong>, <strong>UofT MMPA</strong>, <strong>ICUBE UTM</strong>, and <strong>the CFA Society</strong>. We have also collaborated with RBC, Deloitte, York Region, AutoTrader, and more.
             </p>
-          </div>
-        </div>
+           </div>
+           </div>
+         </div>
+       </div>
       </div>
-    </div>
+    </>
   )
 }

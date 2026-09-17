@@ -1,4 +1,4 @@
-import { useLayoutEffect, useMemo, useRef } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -29,7 +29,7 @@ const ScrollFloat = ({
     ));
   }, [children]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
 
@@ -37,8 +37,7 @@ const ScrollFloat = ({
 
     const charElements = el.querySelectorAll('.char');
 
-    const triggers = [];
-    const tween = gsap.fromTo(
+    gsap.fromTo(
       charElements,
       {
         willChange: 'opacity, transform',
@@ -65,13 +64,6 @@ const ScrollFloat = ({
         }
       }
     );
-    if (tween.scrollTrigger) triggers.push(tween.scrollTrigger);
-
-    ScrollTrigger.refresh();
-
-    return () => {
-      triggers.forEach(t => t.kill());
-    };
   }, [scrollContainerRef, animationDuration, ease, scrollStart, scrollEnd, stagger]);
 
   return (

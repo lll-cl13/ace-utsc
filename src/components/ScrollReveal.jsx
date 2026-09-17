@@ -11,17 +11,21 @@ const ScrollReveal = ({
   scrollContainerRef,
   enableBlur = true,
   baseOpacity = 0.1,
-  baseRotation = 3,
+  baseRotation = 0,
   blurStrength = 4,
   containerClassName = '',
   textClassName = '',
-  rotationEnd = 'bottom top',
-  wordAnimationEnd = 'bottom top'
+  rotationEnd = 'top 50%',
+  wordAnimationEnd = 'top 45%',
+  blurStart = 'top bottom',
+  blurEnd = 'top 50%'
 }) => {
   const containerRef = useRef(null);
 
+  const isString = typeof children === 'string';
   const splitText = useMemo(() => {
-    const text = typeof children === 'string' ? children : '';
+    if (!isString) return children;
+    const text = children;
     return text.split(/(\s+)/).map((word, index) => {
       if (word.match(/^\s+$/)) return word;
       return (
@@ -30,7 +34,7 @@ const ScrollReveal = ({
         </span>
       );
     });
-  }, [children]);
+  }, [children, isString]);
 
   useLayoutEffect(() => {
     const el = containerRef.current;
@@ -40,36 +44,44 @@ const ScrollReveal = ({
 
     const triggers = [];
 
-    const rotTween = gsap.fromTo(
-      el,
-      { transformOrigin: '0% 50%', rotate: baseRotation },
-      {
-        ease: 'none',
-        rotate: 0,
-        scrollTrigger: {
-          trigger: el,
-          scroller,
-          start: 'top 50%',
-          end: rotationEnd,
-          scrub: true
+    if (baseRotation) {
+      const rotTween = gsap.fromTo(
+        el,
+        { transformOrigin: '50% 50%', rotate: baseRotation, transform: 'translateZ(0)' },
+        {
+          ease: 'none',
+          rotate: 0,
+          scrollTrigger: {
+            trigger: el,
+            scroller,
+            start: 'top 70%',
+            end: rotationEnd,
+            scrub: true
+          }
         }
-      }
-    );
-    if (rotTween.scrollTrigger) triggers.push(rotTween.scrollTrigger);
+      );
+      if (rotTween.scrollTrigger) triggers.push(rotTween.scrollTrigger);
+    }
 
     const wordElements = el.querySelectorAll('.word');
+    const textContainer = el.querySelector('.scroll-reveal-text');
+
+    // If we have split words, animate them individually.
+    // Otherwise (e.g. GradientText), animate the whole text block.
+    const opacityTargets = wordElements.length > 0 ? wordElements : [textContainer];
+    const blurTargets = wordElements.length > 0 ? wordElements : [textContainer];
 
     const opTween = gsap.fromTo(
-      wordElements,
+      opacityTargets,
       { opacity: baseOpacity, willChange: 'opacity' },
       {
         ease: 'none',
         opacity: 1,
-        stagger: 0.05,
+        stagger: wordElements.length > 0 ? 0.05 : 0,
         scrollTrigger: {
           trigger: el,
           scroller,
-          start: 'top 60%',
+          start: 'top 72%',
           end: wordAnimationEnd,
           scrub: true
         }
@@ -79,17 +91,17 @@ const ScrollReveal = ({
 
     if (enableBlur) {
       const blurTween = gsap.fromTo(
-        wordElements,
+        blurTargets,
         { filter: `blur(${blurStrength}px)` },
         {
           ease: 'none',
           filter: 'blur(0px)',
-          stagger: 0.05,
+          stagger: wordElements.length > 0 ? 0.05 : 0,
           scrollTrigger: {
             trigger: el,
             scroller,
-            start: 'top 60%',
-            end: wordAnimationEnd,
+            start: blurStart,
+            end: blurEnd,
             scrub: true
           }
         }
@@ -102,7 +114,7 @@ const ScrollReveal = ({
     return () => {
       triggers.forEach(t => t.kill());
     };
-  }, [scrollContainerRef, enableBlur, baseRotation, baseOpacity, rotationEnd, wordAnimationEnd, blurStrength]);
+  }, [scrollContainerRef, enableBlur, baseRotation, baseOpacity, rotationEnd, wordAnimationEnd, blurStrength, blurStart, blurEnd]);
 
   return (
     <div ref={containerRef} className={`scroll-reveal ${containerClassName}`}>

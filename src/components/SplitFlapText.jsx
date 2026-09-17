@@ -169,7 +169,8 @@ const SplitFlapText = ({
       const plans = targetChars
         .map((targetChar, index) => {
           const fromChar = fromPhrase[index] || ' ';
-          // Always plan flips for every char. This allows re-animating even when the target phrase is the same (single word case).
+
+
           return {
             index,
             from: fromChar,
@@ -298,10 +299,8 @@ const SplitFlapText = ({
     };
 
 
-    // For single-phrase (like "JOIN US BECAUSE"), start the flip animation sooner so it visibly changes.
-    // For multiple phrases, respect the full cycleDelay before first transition.
-    const firstDelay = normalizedPhrases.length > 1 ? safeCycleDelay : Math.min(600, safeCycleDelay);
-    scheduleNext(firstDelay);
+    // Start first cycle quickly so the flip effect is visible soon after mount
+    scheduleNext(600);
 
 
     return () => {

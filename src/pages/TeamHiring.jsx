@@ -28,7 +28,7 @@ const itemVariants = {
 
 export default function TeamHiring() {
   return (
-    <div className="max-w-7xl mx-auto px-6 md:px-10 py-6">
+    <div className="px-[45px] py-6">
       <motion.div
         variants={containerVariants}
         initial="hidden"

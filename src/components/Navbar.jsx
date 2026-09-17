@@ -17,7 +17,7 @@ export default function Navbar() {
   const joinTimeout = useRef(null)
   const location = useLocation()
   const isHome = location.pathname === '/'
-  const isDarkPage = isHome || location.pathname === '/about'
+  const isDarkPage = isHome
 
   const openJoin = () => {
     if (joinTimeout.current) clearTimeout(joinTimeout.current)
@@ -30,14 +30,14 @@ export default function Navbar() {
 
   return (
     <nav className="sticky top-0 z-50">
-      <div className={`max-w-7xl mx-auto px-6 md:px-10 flex items-center justify-between h-16 ${isDarkPage ? '' : 'bg-white'}`}>
+      <div className={`${isDarkPage ? '' : 'bg-white'} px-[45px] flex items-center justify-between h-16`}>
         <Link to="/" className="flex items-center gap-3">
           <img
             src="https://aceuoft.wordpress.com/wp-content/uploads/2023/09/ace-utsc-logo-1.png"
             alt="ACE UTSC"
             className="h-9 w-auto"
           />
-            <span className={`text-sm tracking-tight hover:underline font-['League_Spartan',sans-serif] ${isDarkPage ? 'text-white' : 'text-[#00205B]'}`}>ACE UTSC</span>
+          <span className={`text-sm tracking-tight hover:underline font-['League_Spartan',sans-serif] ${isDarkPage ? 'text-white' : 'text-[#00205B]'}`}>ACE UTSC</span>
         </Link>
 
         {/* Desktop Nav */}
@@ -85,10 +85,10 @@ export default function Navbar() {
           ☰
         </button>
       </div>
-
+ 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className={`md:hidden border-t px-6 md:px-10 py-4 flex flex-col gap-3 text-sm ${isDarkPage ? 'bg-[#120F17] text-white' : 'bg-white'}`}>
+        <div className={`md:hidden border-t px-[45px] py-4 flex flex-col gap-3 text-sm ${isDarkPage ? 'bg-[#120F17] text-white' : 'bg-white'}`}>
           {navLinks.map((l) => (
             <Link key={l.to} to={l.to} onClick={() => setMobileOpen(false)}>{l.label}</Link>
           ))}
