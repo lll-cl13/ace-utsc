@@ -1,0 +1,120 @@
+.center-origin-grid {
+  position: relative;
+}
+
+/*
+ * Hide the entire grid while React calculates
+ * the starting positions.
+ *
+ * This prevents the user from seeing:
+ *
+ * final position → jump to center → animation
+ *
+ * Instead they only see:
+ *
+ * center → animation → final position
+ */
+.center-origin-grid[data-animation="pending"] {
+  visibility: hidden;
+}
+
+/*
+ * Once positions have been calculated, the grid
+ * becomes visible while every item is still at
+ * its center-origin starting position.
+ */
+.center-origin-grid[data-animation="ready"] {
+  visibility: visible;
+}
+
+/*
+ * Each direct child is treated as one animation unit.
+ *
+ * For your project:
+ *
+ * row 1 = image + description
+ * row 2 = image + description
+ * row 3 = image + description
+ */
+.center-origin-grid[data-animation="ready"] > *,
+.center-origin-grid[data-animation="play"] > * {
+  will-change: transform, opacity;
+}
+
+/*
+ * Starting position.
+ *
+ * --center-from-x/y are calculated dynamically
+ * from the center of the entire grid.
+ */
+.center-origin-grid[data-animation="ready"] > * {
+  opacity: 0;
+
+  transform:
+    translate3d(
+      var(--center-from-x, 0px),
+      var(--center-from-y, 0px),
+      0
+    )
+    scale(0.75);
+}
+
+/*
+ * Start the actual animation.
+ */
+.center-origin-grid[data-animation="play"] > * {
+  animation-name: centerOriginReveal;
+  animation-duration: 800ms;
+  animation-timing-function:
+    cubic-bezier(0.22, 1, 0.36, 1);
+  animation-delay: var(--center-delay, 0ms);
+  animation-iteration-count: 1;
+  animation-fill-mode: both;
+}
+
+@keyframes centerOriginReveal {
+  from {
+    opacity: 0;
+
+    transform:
+      translate3d(
+        var(--center-from-x, 0px),
+        var(--center-from-y, 0px),
+        0
+      )
+      scale(0.75);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translate3d(0, 0, 0)
+      scale(1);
+  }
+}
+
+/*
+ * Reduced-motion accessibility.
+ */
+.center-origin-grid[data-animation="reduced"] {
+  visibility: visible;
+}
+
+.center-origin-grid[data-animation="reduced"] > * {
+  opacity: 1;
+  transform: none;
+  animation: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .center-origin-grid {
+    visibility: visible !important;
+  }
+
+  .center-origin-grid > * {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}

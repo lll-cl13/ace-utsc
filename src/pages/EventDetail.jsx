@@ -21,7 +21,7 @@ const eventContents = {
     imgs: [
       'https://aceuoft.wordpress.com/wp-content/uploads/2026/01/img_0426.jpeg?w=1024',
       'https://aceuoft.wordpress.com/wp-content/uploads/2026/01/img_0420.jpeg?w=1024',
-      'https://aceuoft.wordpress.com/wp-content/uploads/2026/01/img_0439-edited.jpeg?w=1024',
+      'https://aceuoft.wordpress.com/wp-content/uploads/2026/01/img_0439-edited.jpeg?w=2048',
       'https://aceuoft.wordpress.com/wp-content/uploads/2026/01/img_0447.jpeg?w=1024',
       'https://aceuoft.wordpress.com/wp-content/uploads/2026/01/img_0463.jpeg?w=1024',
       'https://aceuoft.wordpress.com/wp-content/uploads/2026/01/img_0455.jpeg?w=1024',
@@ -124,7 +124,7 @@ export default function EventDetail() {
         </div>
 
         {/* BODY SECTION */}
-        <div className="text-[15.5px] leading-[1.72] whitespace-pre-line pb-8">
+        <div className="text-lg leading-[1.72] whitespace-pre-line pb-8">
           {ev.body}
           {ev.extra && (
             <p className="mt-4">

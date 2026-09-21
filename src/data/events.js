@@ -15,7 +15,7 @@ export const eventsByYear = [
         title: 'ACE UTSC Invitationals 2025',
         date: 'Saturday, January 10, 2025, 10:00am-3:00pm',
         location: 'Instructional Centre (IC), University of Toronto Scarborough',
-        img: 'https://aceuoft.wordpress.com/wp-content/uploads/2026/01/img_0230-edited-2.jpeg?w=1024',
+        img: 'https://aceuoft.wordpress.com/wp-content/uploads/2026/01/img_0426.jpeg?w=2048',
       },
       {
         slug: 'emerging-leaders-academy-2025',

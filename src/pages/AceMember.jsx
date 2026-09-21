@@ -93,41 +93,41 @@ export default function AceMember() {
         whileInView="visible"
         viewport={{ once: true, amount: 0.15 }}
         >
-          <motion.h2 variants={itemVariants} className="text-2xl font-semibold mb-3 tracking-[-0.3px]">
+          <motion.h2 variants={itemVariants} className="text-4xl font-semibold mb-3 tracking-[-0.3px]">
             The Delegate Package
           </motion.h2>
-          <motion.p variants={itemVariants} className="mb-2 text-[15px] leading-relaxed">
+          <motion.p variants={itemVariants} className="mb-2 text-lg leading-relaxed">
             Your quick guide on becoming an ACE UTSC General Member to ACE Canada Delegate.
           </motion.p>
-          <motion.p variants={itemVariants} className="mb-6 text-[15px]">
+          <motion.p variants={itemVariants} className="mb-6 text-lg">
             Stay tuned for our revised 2024/2025 Delegate Package!
           </motion.p>
-          <motion.p variants={itemVariants} className="mb-8 text-[15px]">
+          <motion.p variants={itemVariants} className="mb-8 text-2sm">
             <a href="https://firebasestorage.googleapis.com/v0/b/deca-f0491.appspot.com/o/Delegate_Package.pdf?alt=media&token=76a07149-5014-45d2-a15e-976a085b301b" target="_blank" className="underline hover:text-[#00205B]">
               View previous Delegate Package →
             </a>
           </motion.p>
 
-          <motion.h2 variants={itemVariants} className="text-2xl font-semibold mb-3 tracking-[-0.3px]">
+          <motion.h2 variants={itemVariants} className="text-4xl font-semibold mb-3 tracking-[-0.3px] py-2">
             Represent UTSC at ACE Canada Nationals
           </motion.h2>
-          <motion.p variants={itemVariants} className="mb-6 text-[15px] leading-relaxed">
+          <motion.p variants={itemVariants} className="mb-6 text-lg leading-relaxed">
             Join us as an <strong>ACE UTSC General Member</strong> and represent UTSC at a National level.
           </motion.p>
 
-          <motion.h3 variants={itemVariants} className="text-xl font-semibold mb-2">
+          <motion.h3 variants={itemVariants} className="text-4xl font-semibold mb-2 py-2">
             General Member Registration — Now Open
           </motion.h3>
-          <motion.p variants={itemVariants} className="mb-4 text-[15px]">
+          <motion.p variants={itemVariants} className="mb-4 text-lg">
             Complete the <a href="https://docs.google.com/forms/d/e/1FAIpQLSewPA5SlxsBvRW4x0PE2hqDenoZNaOR1gyf-wUxH5JRHRt8CQ/viewform" target="_blank" className="underline hover:text-[#00205B]">Google Form</a>
           </motion.p>
 
-          <motion.h3 variants={itemVariants} className="text-xl font-semibold mb-3">
+          <motion.h3 variants={itemVariants} className="text-4xl font-semibold mb-3 py-2">
             ACE Canada Member Registration
           </motion.h3>
           <motion.ol 
             variants={containerVariants}
-            className="list-decimal pl-6 mb-6 space-y-1"
+            className="list-decimal pl-6 mb-6 space-y-1 text-lg"
           >
             <motion.li variants={itemVariants}>Go to <a href="https://acenationals.ca/dev/memberRegistration" target="_blank" className="underline">https://acenationals.ca/dev/memberRegistration</a></motion.li>
             <motion.li variants={itemVariants}>Scroll down on the homepage where you will find a register option under the “How Do I Get Involved?”</motion.li>
@@ -141,7 +141,7 @@ export default function AceMember() {
           </motion.h3>
           <motion.ul 
             variants={containerVariants}
-            className="list-disc pl-6 mb-6"
+            className="list-disc pl-6 mb-6 text-lg space-y-1"
           >
             <motion.li variants={itemVariants}>Gain exclusive access to ACE Canada events/content</motion.li>
             <motion.li variants={itemVariants}>As well as our training sessions</motion.li>

@@ -39,7 +39,31 @@
   }
 
   h1, h2, h3, h4, .heading {
-    font-family: var(--font-heading) !important;
+    font-family: var(--font-heading);
+  }
+
+  h1 {
+    font-size: clamp(3rem, 6vw, 4.5rem);
+    line-height: 1.05;
+    font-weight: 700;
+  }
+
+  h2 {
+    font-size: clamp(1.875rem, 3.5vw, 2.5rem);
+    line-height: 1.15;
+    font-weight: 600;
+  }
+
+  h3 {
+    font-size: clamp(1.5rem, 2.75vw, 1.875rem);
+    line-height: 1.2;
+    font-weight: 600;
+  }
+
+  h4 {
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+    line-height: 1.25;
+    font-weight: 600;
   }
 
   /* High readability defaults */

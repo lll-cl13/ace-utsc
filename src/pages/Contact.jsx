@@ -30,11 +30,6 @@ const itemVariants = {
 export default function Contact() {
   return (
     <div className="relative bg-white text-[#222] flex-1 flex flex-col overflow-hidden">
-      <StaticDottedStars
-        backgroundColor="#ffffff"
-        dotColor="#0f172a"
-      />
-
       <div className="relative z-10 px-[45px] py-6">
         <motion.h1 
           className="text-4xl font-semibold tracking-[-1px] mb-8"
@@ -61,12 +56,12 @@ export default function Contact() {
 
           <motion.p 
             variants={itemVariants}
-            className="mb-7 text-[15px] leading-relaxed"
+            className="mb-7 text-lg leading-relaxed"
           >
             Find us on our socials or email us at <a href="mailto:ace.uoftscarborough@gmail.com" className="underline">ace.uoftscarborough@gmail.com</a>. We’ll get back to you as soon as we can.
           </motion.p>
 
-          <div className="mb-8 space-y-0.5 text-[15px] opacity-90">
+          <div className="mb-8 space-y-0.5 text-lg opacity-90">
             <motion.p variants={itemVariants}>1265 Military Trail</motion.p>
             <motion.p variants={itemVariants}>University of Toronto Scarborough</motion.p>
             <motion.p variants={itemVariants} className="mb-6">Scarborough, ON M1C 1A4</motion.p>

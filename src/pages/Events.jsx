@@ -73,14 +73,11 @@ export default function Events() {
       const targetEl = firstId ? yearRefs.current[firstId] : null
       if (targetEl && strip) {
         const offset = targetEl.offsetLeft
-        let targetX = -(offset - 50)
+        let targetX = -offset
         targetX = Math.max(maxXRef.current, Math.min(0, targetX))
         gsap.set(strip, { x: targetX })
         currentXRef.current = targetX
-      } else {
-        // fallback
-        gsap.set(strip, { x: 0 })
-        currentXRef.current = 0
+        updateActiveFromPosition()
       }
     }
     // Use rAF to ensure refs and layout are ready
@@ -116,7 +113,7 @@ export default function Events() {
     if (!targetEl || !strip) return
 
     const offset = targetEl.offsetLeft
-    let targetX = -(offset - 50)
+    let targetX = -offset
     targetX = Math.max(maxXRef.current, Math.min(0, targetX))
 
     currentXRef.current = targetX
@@ -128,12 +125,13 @@ export default function Events() {
     })
   }
 
-  // Compute which year is "active" based on current horizontal position (match jump target logic)
+  // Compute which year is "active" based on current horizontal position.
+  // Active updates when a year reaches the left edge of the viewport.
   const updateActiveFromPosition = () => {
     const strip = stripRef.current
     if (!strip || isSmallScreen) return
 
-    const viewFocus = -currentXRef.current + 50
+    const viewFocus = -currentXRef.current
     let bestId = activeYearRef.current
     let bestDist = Infinity
 

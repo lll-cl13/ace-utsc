@@ -28,22 +28,28 @@ export default function App() {
 
   return (
     <BrowserRouter>
-      {/* {showWelcome && (
-        <WelcomeScreen onComplete={() => setShowWelcome(false)} />
-      )} */}
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/events" element={<Events />} />
-          <Route path="/events/:slug" element={<EventDetail />} />
-          <Route path="/ace-member" element={<AceMember />} />
-          <Route path="/team-hiring" element={<TeamHiring />} />
-          <Route path="/our-team-2025-2026" element={<OurTeam />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
-      </Layout>
-      {/* <Cursor /> */}
+      {showWelcome ? (
+        <>
+          <WelcomeScreen onComplete={() => setShowWelcome(false)} />
+          <Cursor />
+        </>
+      ) : (
+        <>
+          <Layout>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/events" element={<Events />} />
+              <Route path="/events/:slug" element={<EventDetail />} />
+              <Route path="/ace-member" element={<AceMember />} />
+              <Route path="/team-hiring" element={<TeamHiring />} />
+              <Route path="/our-team-2025-2026" element={<OurTeam />} />
+              <Route path="/contact" element={<Contact />} />
+            </Routes>
+          </Layout>
+          <Cursor />
+        </>
+      )}
     </BrowserRouter>
-  )
+  );
 }
