@@ -19,7 +19,6 @@
   width: min(52vmin, 260px);
   height: min(52vmin, 260px);
   aspect-ratio: 1 / 1;
-  border-radius: 50%;
   object-fit: cover;
   object-position: center 40%;
   transform: translate(-50%, -50%) scale(0.55);
@@ -35,7 +34,6 @@
 
 .logo.hold {
   transform: translate(-50%, -50%) scale(0.55);
-  border-radius: 50%;
 }
 
 /* Grows from center to large area */

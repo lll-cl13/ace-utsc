@@ -67,13 +67,16 @@ export default function Events() {
     }
     stage.addEventListener('wheel', handleWheel, { passive: false })
 
-    // Position exactly as if we "pressed" the first sidebar item (left-aligned like jumpToYear)
+    // Center the first year block in the viewport (robust to different card widths)
     const positionToInitialYear = () => {
       const firstId = eventsByYear[0]?.id
       const targetEl = firstId ? yearRefs.current[firstId] : null
       if (targetEl && strip) {
+        const stageWidth = stage.offsetWidth || 0
+        const elWidth = targetEl.offsetWidth || 0
         const offset = targetEl.offsetLeft
-        let targetX = -offset
+        // Center the element
+        let targetX = -(offset - (stageWidth - elWidth) / 2)
         targetX = Math.max(maxXRef.current, Math.min(0, targetX))
         gsap.set(strip, { x: targetX })
         currentXRef.current = targetX
@@ -112,8 +115,11 @@ export default function Events() {
     const strip = stripRef.current
     if (!targetEl || !strip) return
 
+    const stageWidth = stage.offsetWidth || 0
+    const elWidth = targetEl.offsetWidth || 0
     const offset = targetEl.offsetLeft
-    let targetX = -offset
+    // Center the element
+    let targetX = -(offset - (stageWidth - elWidth) / 2)
     targetX = Math.max(maxXRef.current, Math.min(0, targetX))
 
     currentXRef.current = targetX
@@ -131,7 +137,7 @@ export default function Events() {
     const strip = stripRef.current
     if (!strip || isSmallScreen) return
 
-    const viewFocus = -currentXRef.current
+    const viewFocus = -currentXRef.current + (stage.offsetWidth / 2)
     let bestId = activeYearRef.current
     let bestDist = Infinity
 
@@ -208,7 +214,7 @@ export default function Events() {
           /* Desktop: horizontal strip. Pictures scale to fit screen + caption + linebar */
             <div
               ref={stripRef}
-              className="flex h-full gap-8 md:gap-16 pl-[40vw] pt-4 will-change-transform"
+              className="flex h-full gap-8 md:gap-16 pl-[5vw] pt-4 will-change-transform"
             >
             {(() => {
               let yearIdx = 0;
@@ -237,10 +243,10 @@ export default function Events() {
                 return (
                   <div
                     key={slide.slug}
-                    className="flex-shrink-0 w-[min(92vw,920px)] h-full flex flex-col pr-8 md:pr-12"
+                    className="flex-shrink-0 w-[min(92vw,920px)] h-full flex flex-col"
                   >
-                    <Link to={`/events/${slide.slug}`} className="block group flex-1 flex flex-col">
-                    <div className="relative overflow-hidden rounded-3xl shadow-sm" style={{ height: 'min(70vh, 670px)' }}>                      
+                    <Link to={`/events/${slide.slug}`} className="block group flex-1 flex flex-col min-h-0">
+                    <div className="relative overflow-hidden rounded-3xl shadow-sm" style={{ height: 'min(70vh, 670px)' }}>                    
                       <GlareHover
                           width="100%"
                           height="100%"
@@ -254,16 +260,16 @@ export default function Events() {
                           transitionDuration={680}
                           playOnce={false}
                         >
-                           <img
-                             src={slide.img}
-                             alt={slide.title}
-                             className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.1]"
-                           />
-                        </GlareHover>
-                      </div>
+                            <img
+                              src={slide.img}
+                              alt={slide.title}
+                              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
+                            />
+                         </GlareHover>
+                       </div>
 
-                      <div className="mt-1 pl-1 h-[35px] flex-shrink-0">
-                        <div className="text-[13px] font-semibold tracking-[-0.2px] leading-tight">
+                      <div className="mt-1 pl-1 min-h-[42px] flex-shrink-0">
+                        <div className="text-[13px] font-semibold tracking-[-0.2px] leading-tight group-hover:underline">
                           {slide.title}
                         </div>
                         <div className="mt-0.5 text-[9px] text-[#00205B]/70 space-y-[1px]">
@@ -279,7 +285,7 @@ export default function Events() {
           </div>
         ) : (
           /* Mobile vertical */
-          <div className="px-[45px] pt-4 pb-4">
+          <div className="px-[45px] pt-4 pb-12">
             {eventsByYear.map((section) => (
               <div key={section.id} id={`m-year-${section.id}`} className="mb-10">
                 <div className="text-center text-[48px] font-semibold tracking-[-2.2px] leading-none text-[#00205B] mb-5">
@@ -302,12 +308,12 @@ export default function Events() {
                         transitionDuration={600}
                         playOnce={false}
                       >
-                        <img src={ev.img} alt={ev.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.1] bold" />
+                         <img src={ev.img} alt={ev.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.1]" />
                       </GlareHover>
                     </div>
                     <div className="mt-3">
-                      <div className="text-[18px] font-semibold tracking-[-0.2px]">{ev.title}</div>
-                      <div className="mt-1 text-[13px] text-[#00205B]/70">
+                      <div className="text-[18px] font-semibold tracking-[-0.2px] group-hover:underline group-hover:font-bold">{ev.title}</div>
+                      <div className="mt-1 text-[13px] text-[#00205B]/70 group-hover:underline group-hover:font-black">
                         📅 {ev.date}<br />📍 {ev.location}
                       </div>
                     </div>

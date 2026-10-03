@@ -75,7 +75,7 @@ export default function Home() {
       {/* Stable fixed background layer (above body bg, below content) */}
       <div
         className="fixed inset-0 z-[0] bg-cover bg-center pointer-events-none"
-        style={{ backgroundImage: "url('https://aceuoft.wordpress.com/wp-content/uploads/2023/08/background-tower-1.jpeg')" }}
+        style={{ backgroundImage: 'url("public/img/background-tower.jpeg")' }}
       />
       <div className="fixed inset-0 z-[0] bg-black/30 pointer-events-none" />
 
@@ -85,7 +85,7 @@ export default function Home() {
         <div className="h-screen flex items-center justify-center text-white">
           <div className="text-center">
             <img
-              src="https://aceuoft.wordpress.com/wp-content/uploads/2023/09/ace-utsc-logo-1.png"
+              src="/img/ace-utsc-logo-1.png"
               alt="ACE UTSC Logo"
               className="mx-auto h-20 md:h-30"
             />
@@ -136,7 +136,7 @@ export default function Home() {
               baseRotation={0}
               containerClassName="text-lg md:text-2xl leading-relaxed tracking-[-0.1px] text-white/90"
             >
-              We are dedicated to offering <ShinyText text="real world practice" color="#b5b5b5" shineColor="#ffdddd" speed={2} /> for students. Our mission is to transform <ShinyText text="classroom knowledge" color="#b5b5b5" shineColor="#ffdddd" speed={2} /> into <ShinyText text="practical expertise" color="#b5b5b5" shineColor="#ffdddd" speed={2} /> and empower students to strengthen their skills and get ready for the real world.
+              We are dedicated to offering <ShinyText text="real world practice" color="#000000" shineColor="#ffdddd" speed={2} /> for students. Our mission is to transform <ShinyText text="classroom knowledge" color="#000000" shineColor="#ffdddd" speed={2} /> into <ShinyText text="practical expertise" color="#000000" shineColor="#ffdddd" speed={2} /> and empower students to strengthen their skills and get ready for the real world.
             </ScrollReveal>
            </div>
            </div>
@@ -233,7 +233,7 @@ export default function Home() {
                  playOnce={true}
                >
                  <img
-                   src="https://aceuoft.wordpress.com/wp-content/uploads/2025/09/img_5568-1-edited.jpg?w=1024"
+                   src="public/img/img_5568-1-edited.jpg"
                    alt="Achievements"
                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.1]"
                  />
@@ -267,7 +267,7 @@ export default function Home() {
                  playOnce={true}
                >
                  <img
-                   src="https://aceuoft.wordpress.com/wp-content/uploads/2025/08/img_0204.jpeg?w=2048"
+                   src="/img/img_0204.jpeg"
                    alt="Events"
                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.1]"
                  />
@@ -302,7 +302,7 @@ export default function Home() {
                  playOnce={true}
                >
                  <img
-                   src="https://cdn.creativefabrica.com/2021/04/01/Partnership-icon-Graphics-10261127-1-1-580x386.jpg"
+                   src="/img/Partnership-icon-Graphics-10261127-1-1-580x386.jpg"
                    alt="UTSC Campus"
                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.1]"
                  />

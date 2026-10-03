@@ -47,15 +47,50 @@ export default function TeamHiring() {
             variants={itemVariants}
             className="text-lg text-[#444]"
           >
-            Associate Hiring coming soon this Fall.
+            Associate Hiring is here!
           </motion.p>
           <motion.p 
             variants={itemVariants}
-            className="mt-2"
+            className="mt-4"
           >
-            Stay tuned for hiring descriptions!
+            Looking to get more involved, build your network, and gain hands-on experience this year? Now's your chance! 👀
+          </motion.p>
+          <motion.p 
+            variants={itemVariants}
+            className="mt-4"
+          >
+            We're excited to welcome new Associates for the 2026-2027 year! Whether you're interested in events, marketing, corporate relations, or just want to connect with more people, there's a place for you at ACE. 💙
+          </motion.p>
+          <motion.p 
+            variants={itemVariants}
+            className="mt-4"
+          >
+            Come meet new people, grow your skills, and make an impact with us. 🤝✨ 
+          </motion.p>
+           <motion.p 
+            variants={itemVariants}
+            className="mt-4 font-medium"
+          >
+            📅 Application Deadline: October 7 at 11:59 PM
           </motion.p>
         </motion.div>
+        <motion.p 
+          variants={itemVariants}
+          className="mt-4"
+        >
+          <a href="https://forms.gle/6Z7g1k3v5y8X9J2u5" target="_blank" rel="noopener noreferrer" className="underline hover:text-[#00205B]">
+            APPLY HERE! →
+          </a>
+        </motion.p>
+
+        <div style={{ marginTop: 32 }}>
+          <iframe 
+            src="https://docs.google.com/document/d/1RErMoZmqZhsYQnnIAT2eD0CjRRq0vHpl4nqld0zwfj0/edit?usp=drivesdk" 
+            width="100%" 
+            height="600">
+            Loading…
+          </iframe>
+        </div>
       </div>
 
       <div>

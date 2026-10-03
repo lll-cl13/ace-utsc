@@ -43,13 +43,13 @@ export default function Navbar() {
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8 text-sm font-medium">
           {navLinks.map((l) => (
-            <Link key={l.to} to={l.to} className={`transition-colors ${isDarkPage ? 'text-white hover:text-white/80' : 'hover:text-[#00205B]'}`}>
+            <Link key={l.to} to={l.to} className={`transition-colors hover:underline underline-offset-4 ${isDarkPage ? 'text-white hover:text-white/80' : 'hover:text-[#00205B]'}`}>
               {l.label}
             </Link>
           ))}
 
           <div className="relative" onMouseEnter={openJoin} onMouseLeave={closeJoin}>
-            <button className={`flex items-center gap-1 transition-colors ${isDarkPage ? 'text-white hover:text-white/80' : 'hover:text-[#00205B]'}`}>
+            <button className={`flex items-center gap-1 transition-colors hover:underline underline-offset-4 ${isDarkPage ? 'text-white hover:text-white/80' : 'hover:text-[#00205B]'}`}>
               Join Us
               <span className="text-xs">▼</span>
             </button>
@@ -60,7 +60,7 @@ export default function Navbar() {
                 onMouseLeave={closeJoin}
               >
                 {joinLinks.map((l) => (
-                  <Link key={l.to} to={l.to} className="block px-4 py-2 text-sm hover:bg-gray-50">
+                  <Link key={l.to} to={l.to} className="block px-4 py-2 text-sm hover:underline underline-offset-2 hover:bg-gray-50">
                     {l.label}
                   </Link>
                 ))}
@@ -68,10 +68,10 @@ export default function Navbar() {
             )}
           </div>
 
-          <Link to="/our-team-2025-2026" className={`transition-colors ${isDarkPage ? 'text-white hover:text-white/80' : 'hover:text-[#00205B]'}`}>
+          <Link to="/our-team-2025-2026" className={`transition-colors hover:underline underline-offset-4 ${isDarkPage ? 'text-white hover:text-white/80' : 'hover:text-[#00205B]'}`}>
             Our Team
           </Link>
-          <Link to="/contact" className={`transition-colors ${isDarkPage ? 'text-white hover:text-white/80' : 'hover:text-[#00205B]'}`}>
+          <Link to="/contact" className={`transition-colors hover:underline underline-offset-4 ${isDarkPage ? 'text-white hover:text-white/80' : 'hover:text-[#00205B]'}`}>
             Contact Us
           </Link>
         </div>
@@ -90,14 +90,14 @@ export default function Navbar() {
       {mobileOpen && (
         <div className={`md:hidden border-t px-[45px] py-4 flex flex-col gap-3 text-sm ${isDarkPage ? 'bg-[#120F17] text-white' : 'bg-white'}`}>
           {navLinks.map((l) => (
-            <Link key={l.to} to={l.to} onClick={() => setMobileOpen(false)}>{l.label}</Link>
+            <Link key={l.to} to={l.to} onClick={() => setMobileOpen(false)} className="hover:underline underline-offset-2">{l.label}</Link>
           ))}
           <div className="font-medium">Join Us</div>
           {joinLinks.map((l) => (
-            <Link key={l.to} to={l.to} className="pl-4" onClick={() => setMobileOpen(false)}>{l.label}</Link>
+            <Link key={l.to} to={l.to} className="pl-4 hover:underline underline-offset-2" onClick={() => setMobileOpen(false)}>{l.label}</Link>
           ))}
-          <Link to="/our-team-2025-2026" onClick={() => setMobileOpen(false)}>Our Team</Link>
-          <Link to="/contact" onClick={() => setMobileOpen(false)}>Contact Us</Link>
+          <Link to="/our-team-2025-2026" onClick={() => setMobileOpen(false)} className="hover:underline underline-offset-2">Our Team</Link>
+          <Link to="/contact" onClick={() => setMobileOpen(false)} className="hover:underline underline-offset-2">Contact Us</Link>
         </div>
       )}
     </nav>

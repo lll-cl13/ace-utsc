@@ -29,19 +29,19 @@ const itemVariants = {
 
 const carouselItems = [
   {
-    image: 'img/Member1.jpg',
+    image: '/img/Member1.jpg',
     alt: 'ACE UTSC Banner',
   },
   {
-    image: 'https://aceuoft.wordpress.com/wp-content/uploads/2023/09/ace-nationals-2024-1.png',
+    image: '/img/ace-nationals-2024-1.png',
     alt: 'ACE Nationals 2024',
   },
   {
-    image: 'https://aceuoft.wordpress.com/wp-content/uploads/2024/09/tricampus.png',
-    alt: 'Tri Campus',
+    image: '/img/img_2725-1.png',
+    alt: 'Event Photo',
   },
   {
-    image: 'https://aceuoft.wordpress.com/wp-content/uploads/2024/09/img_2725-1.jpg',
+    image: '/img/events/2324_AceInvitationals_2.jpg',
     alt: 'Event Photo',
   },
 ];
@@ -102,9 +102,15 @@ export default function AceMember() {
           <motion.p variants={itemVariants} className="mb-6 text-lg">
             Stay tuned for our revised 2024/2025 Delegate Package!
           </motion.p>
+          {/* adjust to preview later */}
+          <motion.p variants={itemVariants} className="mb-6 text-lg leading-relaxed">
+            <a href="https://pdflink.to/aceutscdelegatehandbook/" target="_blank" className="underline hover:text-[#00205B]">
+              <img src="/img/delegate_handbook.png" alt="Delegate Handbook" className="w-full max-w-lg mx-auto mt-4" />
+            </a>
+          </motion.p> 
           <motion.p variants={itemVariants} className="mb-8 text-2sm">
-            <a href="https://firebasestorage.googleapis.com/v0/b/deca-f0491.appspot.com/o/Delegate_Package.pdf?alt=media&token=76a07149-5014-45d2-a15e-976a085b301b" target="_blank" className="underline hover:text-[#00205B]">
-              View previous Delegate Package →
+            <a href="https://pdflink.to/aceutscdelegatehandbook/" target="_blank" className="underline hover:text-[#00205B]">
+              View Our Delegate Package →
             </a>
           </motion.p>
 
@@ -119,7 +125,7 @@ export default function AceMember() {
             General Member Registration — Now Open
           </motion.h3>
           <motion.p variants={itemVariants} className="mb-4 text-lg">
-            Complete the <a href="https://docs.google.com/forms/d/e/1FAIpQLSewPA5SlxsBvRW4x0PE2hqDenoZNaOR1gyf-wUxH5JRHRt8CQ/viewform" target="_blank" className="underline hover:text-[#00205B]">Google Form</a>
+            Complete the <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_pGgnT4ApYzyy1QqOouFcTP0WTYzL7UspVJ8iU26dma1AvQ/viewform?pli=1" target="_blank" className="underline hover:text-[#00205B]">Google Form</a>
           </motion.p>
 
           <motion.h3 variants={itemVariants} className="text-4xl font-semibold mb-3 py-2">
