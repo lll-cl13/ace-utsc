@@ -139,11 +139,9 @@ export default function Home() {
            </div>
            </div>
   
-          <div
-            className="min-h-screen w-full bg-white"
-          >
+           <div className="min-h-screen w-full">
             {/* Join + Stats */}
-             <div className="relative z-[1] px-[45px] pt-50 pb-50">
+              <div className="relative z-[1] px-[45px] pt-50 pb-50 bg-white">
               <div className="text-center mb-20">
                 <Link
                   to="/ace-member"
@@ -156,8 +154,8 @@ export default function Home() {
                     cycleDelay={2400}
                     charset="alphanumeric"
                     flipsPerChar={8}
-                    tileColor="#111827"
-                    textColor="#f8fafc"
+                     tileColor="#020617"
+                     textColor="#f8fafc"
                     tileRadius={8}
                     gap="clamp(2px,0.8vw,6px)"
                     fontSize="clamp(24px,6.5vw,72px)"
@@ -166,29 +164,34 @@ export default function Home() {
                   />
               </Link>
             </div>
-            <hr />
+             <hr className="border-white/20" />
                 {/* Stats: numbers & tiny text (animated, grid: two on top, one down) */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-y-8 text-center px-4 py-20"> 
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-y-8 text-center px-4 py-20  bg-[#09346A]/90"> 
                   {[
                     { to: 1, prefix: '# ', suffix: '', separator: '', desc: 'Largest Case Competition in Canada' },
                     { to: 50000, prefix: '#', suffix: '+', separator: ',', desc: 'Public Awareness Initiatives' },
                     { to: 100, prefix: '', suffix: '+', separator: '', desc: 'Undergraduate Students Joined' }
                   ].map((stat, index) => (
                     <div key={index} >
-                      <div className="text-6xl md:text-6xl font-semibold tracking-[-1.5px] text-[#111827] mb-6 tabular-nums">
+                      <div className="text-6xl md:text-6xl font-semibold tracking-[-1.5px] text-white mb-6 tabular-nums">
                         {stat.prefix}<CountUp to={stat.to} separator={stat.separator} duration={1.6} />{stat.suffix}
                       </div>
-                      <p className="text-sm md:text-[15px] text-[#444] tracking-[-0.2px] leading-snug">
+                      <p className="text-sm md:text-[15px] text-white/80 tracking-[-0.2px] leading-snug">
                         {stat.desc}
                       </p>
                     </div>
                   ))}
                 </div>
-            <hr />
+             <hr className="border-white/20" />
          </div>
 
         {/* Achievements, Events & Partnerships — one unified section */}
-        <div className="px-[45px] pb-12 relative z-[1]">
+        <div className="px-[45px] pb-12 relative z-[1] bg-white">
+          <div className="text-center mb-15">
+            <h1 className="text-4xl md:text-5xl font-semibold tracking-[-0.6px] mb-3">
+              WHAT WE DO
+            </h1>
+          </div>
           <div
             ref={gridRef}
             className="achievements-grid grid grid-cols-1 gap-12 md:gap-16 pb-20 pt-10"
@@ -196,28 +199,14 @@ export default function Home() {
            {/* Achievements */}
            <div
              ref={(el) => { itemRefs.current[0] = el }}
-             className="achievement-item group grid grid-cols-1 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-6 md:gap-9 items-start"
+             className="achievement-item group grid grid-cols-1 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-6 md:gap-9 items-center"
            >
-             <div className="achievement-image w-full aspect-[4/3] rounded-xl overflow-hidden">
-               <GlareHover
-                 width="100%"
-                 height="100%"
-                 background="transparent"
-                 borderRadius="0.5rem"
-                 borderColor="transparent"
-                 glareColor="#ffffff"
-                 glareOpacity={0.25}
-                 glareAngle={-30}
-                 glareSize={280}
-                 transitionDuration={700}
-                 playOnce={true}
-               >
+             <div className="achievement-image w-full aspect-[4/3] overflow-hidden">
                  <img
                    src="/img/AceNationalsEdited.jpeg"
                    alt="Achievements"
                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.1]"
                  />
-               </GlareHover>
              </div>
               <div className="achievement-description bg-white/80 p-3 rounded-md">
                <h2 className="text-3xl font-semibold mb-2.5 tracking-[-0.3px]">Achievements</h2>
@@ -230,29 +219,15 @@ export default function Home() {
            {/* Events */}
            <div
              ref={(el) => { itemRefs.current[1] = el }}
-             className="achievement-item group grid grid-cols-1 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-6 md:gap-9 items-start"
+             className="achievement-item group grid grid-cols-1 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-6 md:gap-9 items-center"
            >
-             <div className="achievement-image w-full aspect-[4/3] rounded-xl overflow-hidden">
-               <GlareHover
-                 width="100%"
-                 height="100%"
-                 background="transparent"
-                 borderRadius="0.5rem"
-                 borderColor="transparent"
-                 glareColor="#ffffff"
-                 glareOpacity={0.25}
-                 glareAngle={-30}
-                 glareSize={280}
-                 transitionDuration={700}
-                 playOnce={true}
-               >
+             <div className="achievement-image w-full aspect-[4/3] overflow-hidden">
                  <img
                    src="/img/img_0204.jpeg"
                    alt="Events"
                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.1]"
-                 />
-               </GlareHover>
-             </div>
+                 /> 
+              </div>
               <div className="achievement-description bg-white/80 p-3 rounded-md">
                <h2 className="text-3xl font-semibold mb-2.5 tracking-[-0.3px]">Events</h2>
                <p className="text-xl leading-relaxed text-[#333]">
@@ -265,28 +240,14 @@ export default function Home() {
            {/* Partnerships */}
            <div
              ref={(el) => { itemRefs.current[2] = el }}
-             className="achievement-item group grid grid-cols-1 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-6 md:gap-9 items-start"
+             className="achievement-item group grid grid-cols-1 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-6 md:gap-9 items-center"
            >
-             <div className="achievement-image w-full aspect-[4/3] rounded-xl overflow-hidden">
-               <GlareHover
-                 width="100%"
-                 height="100%"
-                 background="transparent"
-                 borderRadius="0.5rem"
-                 borderColor="transparent"
-                 glareColor="#ffffff"
-                 glareOpacity={0.25}
-                 glareAngle={-30}
-                 glareSize={280}
-                 transitionDuration={700}
-                 playOnce={true}
-               >
+             <div className="achievement-image w-full aspect-[4/3] overflow-hidden">
                  <img
                    src="/img/events/2324_AceInvitationals_4.jpg"
                    alt="UTSC Campus"
                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.1]"
                  />
-               </GlareHover>
              </div>
               <div className="achievement-description bg-white/80 p-3 rounded-md">
                <h2 className="text-3xl font-semibold mb-2.5 tracking-[-0.3px]">Partnerships</h2>

@@ -14,6 +14,8 @@ export default function Events() {
   const yearRefs = useRef({})
   const currentXRef = useRef(0)
   const maxXRef = useRef(0)
+  const dragRef = useRef(null)
+  const justDraggedRef = useRef(false)
   const [activeYear, setActiveYear] = useState(eventsByYear[0].id)
   const activeYearRef = useRef(activeYear)
   activeYearRef.current = activeYear
@@ -51,10 +53,11 @@ export default function Events() {
     updateMax()
     window.addEventListener('resize', updateMax)
 
-    // Wheel controls horizontal only. No page scroll.
+    // Wheel controls horizontal only. No page scroll. Supports left/right (deltaX) swipes too.
     const handleWheel = (e) => {
       e.preventDefault()
-      let next = currentXRef.current - (e.deltaY * 0.9)
+      const raw = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY
+      let next = currentXRef.current - (raw * 0.9)
       next = Math.max(maxXRef.current, Math.min(0, next))
       currentXRef.current = next
       gsap.to(strip, {
@@ -67,16 +70,77 @@ export default function Events() {
     }
     stage.addEventListener('wheel', handleWheel, { passive: false })
 
-    // Center the first year block in the viewport (robust to different card widths)
+    // Pointer drag / swipe for left-right horizontal navigation (trackpad/touch)
+    const onPointerDown = (e) => {
+      if (e.button != null && e.button !== 0) return
+      gsap.killTweensOf(strip)
+      dragRef.current = {
+        startX: e.clientX,
+        startPos: currentXRef.current,
+        moved: false,
+        id: e.pointerId,
+        lastX: e.clientX,
+        lastT: performance.now(),
+        v: 0,
+      }
+    }
+    const onPointerMove = (e) => {
+      const drag = dragRef.current
+      if (!drag) return
+      const dx = e.clientX - drag.startX
+      if (!drag.moved && Math.abs(dx) > 5) {
+        drag.moved = true
+        try { stage.setPointerCapture(drag.id) } catch {}
+      }
+      if (!drag.moved) return
+      const now = performance.now()
+      const dt = Math.max(now - drag.lastT, 1)
+      drag.v = (e.clientX - drag.lastX) / dt
+      drag.lastX = e.clientX
+      drag.lastT = now
+      let next = drag.startPos + dx
+      next = Math.max(maxXRef.current, Math.min(0, next))
+      currentXRef.current = next
+      gsap.set(strip, { x: next })
+      updateActiveFromPosition()
+    }
+    const onPointerEnd = (e) => {
+      const drag = dragRef.current
+      if (!drag) return
+      const didMove = drag.moved
+      if (didMove) {
+        justDraggedRef.current = true
+        setTimeout(() => { justDraggedRef.current = false }, 120)
+      }
+      const dragId = drag.id
+      dragRef.current = null
+      if (!didMove) return
+      try { stage.releasePointerCapture(dragId) } catch {}
+      // momentum fling
+      let projected = currentXRef.current + (drag.v * 220)
+      projected = Math.max(maxXRef.current, Math.min(0, projected))
+      currentXRef.current = projected
+      gsap.to(strip, {
+        x: projected,
+        duration: 0.65,
+        ease: 'power2.out',
+        onUpdate: updateActiveFromPosition,
+      })
+    }
+    stage.addEventListener('pointerdown', onPointerDown)
+    stage.addEventListener('pointermove', onPointerMove)
+    stage.addEventListener('pointerup', onPointerEnd)
+    stage.addEventListener('pointercancel', onPointerEnd)
+    stage.addEventListener('pointerleave', onPointerEnd)
+
+    // Left-align the first year block in the viewport (text to left, robust to different card widths)
     const positionToInitialYear = () => {
       const firstId = eventsByYear[0]?.id
       const targetEl = firstId ? yearRefs.current[firstId] : null
       if (targetEl && strip) {
-        const stageWidth = stage.offsetWidth || 0
-        const elWidth = targetEl.offsetWidth || 0
         const offset = targetEl.offsetLeft
-        // Center the element
-        let targetX = -(offset - (stageWidth - elWidth) / 2)
+        // Left-align the element
+        let targetX = -offset
         targetX = Math.max(maxXRef.current, Math.min(0, targetX))
         gsap.set(strip, { x: targetX })
         currentXRef.current = targetX
@@ -90,6 +154,11 @@ export default function Events() {
       document.documentElement.style.overflow = prevOverflow
       window.removeEventListener('resize', updateMax)
       stage.removeEventListener('wheel', handleWheel)
+      stage.removeEventListener('pointerdown', onPointerDown)
+      stage.removeEventListener('pointermove', onPointerMove)
+      stage.removeEventListener('pointerup', onPointerEnd)
+      stage.removeEventListener('pointercancel', onPointerEnd)
+      stage.removeEventListener('pointerleave', onPointerEnd)
     }
   }, [isSmallScreen])
 
@@ -113,13 +182,12 @@ export default function Events() {
 
     const targetEl = yearRefs.current[id]
     const strip = stripRef.current
-    if (!targetEl || !strip) return
+    const stageEl = stageRef.current
+    if (!targetEl || !strip || !stageEl) return
 
-    const stageWidth = stage.offsetWidth || 0
-    const elWidth = targetEl.offsetWidth || 0
     const offset = targetEl.offsetLeft
-    // Center the element
-    let targetX = -(offset - (stageWidth - elWidth) / 2)
+    // Left-align the year block (text at left, not centered in viewport)
+    let targetX = -offset
     targetX = Math.max(maxXRef.current, Math.min(0, targetX))
 
     currentXRef.current = targetX
@@ -132,12 +200,13 @@ export default function Events() {
   }
 
   // Compute which year is "active" based on current horizontal position.
-  // Active updates when a year reaches the left edge of the viewport.
+  // Active updates when a year reaches the middle of the viewport.
   const updateActiveFromPosition = () => {
     const strip = stripRef.current
-    if (!strip || isSmallScreen) return
+    const stageEl = stageRef.current
+    if (!strip || !stageEl || isSmallScreen) return
 
-    const viewFocus = -currentXRef.current + (stage.offsetWidth / 2)
+    const viewFocus = -currentXRef.current - (stageEl.offsetWidth)
     let bestId = activeYearRef.current
     let bestDist = Infinity
 
@@ -209,12 +278,20 @@ export default function Events() {
       <div
         ref={stageRef}
         className={`relative ${!isSmallScreen ? 'flex-1 overflow-hidden' : ''}`}
+        style={!isSmallScreen ? { touchAction: 'none' } : undefined}
       >
         {!isSmallScreen ? (
           /* Desktop: horizontal strip. Pictures scale to fit screen + caption + linebar */
             <div
               ref={stripRef}
               className="flex h-full gap-8 md:gap-16 pl-[5vw] pt-4 will-change-transform"
+              onClickCapture={(e) => {
+                if (justDraggedRef.current) {
+                  justDraggedRef.current = false
+                  e.stopPropagation()
+                  e.preventDefault()
+                }
+              }}
             >
             {(() => {
               let yearIdx = 0;
@@ -246,26 +323,12 @@ export default function Events() {
                     className="flex-shrink-0 w-[min(92vw,920px)] h-full flex flex-col"
                   >
                     <Link to={`/events/${slide.slug}`} className="block group flex-1 flex flex-col min-h-0">
-                    <div className="relative overflow-hidden rounded-3xl shadow-sm" style={{ height: 'min(70vh, 670px)' }}>                    
-                      <GlareHover
-                          width="100%"
-                          height="100%"
-                          background="transparent"
-                          borderRadius="24px"
-                          borderColor="transparent"
-                          glareColor="#ffffff"
-                          glareOpacity={0.3}
-                          glareAngle={-26}
-                          glareSize={260}
-                          transitionDuration={680}
-                          playOnce={false}
-                        >
-                            <img
-                              src={slide.img}
-                              alt={slide.title}
-                              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
-                            />
-                         </GlareHover>
+                      <div className="relative overflow-hidden rounded-xl shadow-sm" style={{ height: 'min(70vh, 670px)' }}>                    
+                        <img
+                          src={slide.img}
+                          alt={slide.title}
+                          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
+                        />
                        </div>
 
                       <div className="mt-1 pl-1 min-h-[42px] flex-shrink-0">
@@ -294,7 +357,7 @@ export default function Events() {
 
                 {section.items.map((ev) => (
                   <Link key={ev.slug} to={`/events/${ev.slug}`} className="block group mb-10">
-                    <div className="relative w-full rounded-3xl overflow-hidden shadow-sm" style={{ height: 'min(58vh, 420px)' }}>
+                    <div className="relative w-full rounded-xl overflow-hidden shadow-sm" style={{ height: 'min(58vh, 420px)' }}>
                       <GlareHover
                         width="100%"
                         height="100%"

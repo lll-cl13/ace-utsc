@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: center;
   background: rgba(255, 255, 255, 0.92);
-  cursor: pointer;
+  cursor: default;
   overflow: hidden;
   /* prevent the expanding circle from causing scroll/clip issues on small screens */
   overscroll-behavior: none;
