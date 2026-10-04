@@ -61,31 +61,6 @@ export default function AceMember() {
         </motion.h1>
       </div>
 
-      {/* Landscape Depth Carousel at top */}
-      <div className="w-full mb-8" style={{ height: '550px', position: 'relative' }}>
-        <DepthCarousel
-          items={carouselItems}
-          depth={180}
-          spread={65}
-          tilt={14}
-          tiltDirection="right"
-          perspective={1300}
-          visibleCards={3}
-          falloff={0.22}
-          blur={4}
-          autoplay={true}
-          loop
-          cardWidth={800}
-          cardHeight={480}
-          radius={12}
-          tint="#05060a"
-          duration={650}
-          ease="power3.out"
-          autoplayDelay={2800}
-          showIndicators
-        />
-      </div>
-
       <div className="px-[45px] pb-16 md:pb-24">
         <motion.div
           variants={containerVariants}
@@ -121,6 +96,33 @@ export default function AceMember() {
             Join us as an <strong>ACE UTSC General Member</strong> and represent UTSC at a National level.
           </motion.p>
 
+          {/* Landscape Depth Carousel */}
+          <div className="w-full pb-25 pt-6">
+            <DepthCarousel
+              items={carouselItems}
+              depth={420}
+              spread={65}
+              tilt={14}
+              tiltDirection="right"
+              perspective={1300}
+              visibleCards={3}
+              falloff={0.22}
+              blur={4}
+              autoplay={true}
+              loop
+              cardWidth={800}
+              cardHeight={480}
+              radius={12}
+              tint="#05060a"
+              duration={650}
+              ease="power3.out"
+              autoplayDelay={1500}
+              showIndicators
+              draggable={false}
+            />
+          </div>
+
+
           <motion.h3 variants={itemVariants} className="text-4xl font-semibold mb-2 py-2">
             General Member (Delegate) Registration — Now Open
           </motion.h3>
@@ -130,7 +132,8 @@ export default function AceMember() {
           <motion.p variants={itemVariants} className="mb-4 text-lg">
             Deadline: Friday, October 23, 2026
           </motion.p>
-
+          
+          
           <motion.h3 variants={itemVariants} className="text-4xl font-semibold mb-3 py-2">
             ACE Canada Member Registration
           </motion.h3>
@@ -165,6 +168,7 @@ export default function AceMember() {
             </motion.p>
           </motion.div>
         </div>
+        
       </div>
     )
   }

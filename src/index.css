@@ -38,6 +38,15 @@
     background-color: white;
   }
 
+  /* Hide system scrollbar (scrolling still works) */
+  html, body {
+    scrollbar-width: none;
+  }
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar {
+    display: none;
+  }
+
   h1, h2, h3, h4, .heading {
     font-family: var(--font-heading);
   }
@@ -72,6 +81,11 @@
   p, .prose {
     line-height: 1.75;
   }
+
+  strong {
+    color: #A80000; /* Replace with your desired color hex or name */
+  }
+
 
   .section {
     padding-top: 4rem;

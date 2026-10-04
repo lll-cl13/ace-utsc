@@ -5,9 +5,8 @@ import ScrollFloat from '../components/ScrollFloat'
 import SplitFlapText from '../components/SplitFlapText'
 import GlareHover from '../components/GlareHover'
 import GradientText from '../components/GradientText'
-import ProfileCard from '../components/ProfileCard'
 import ShinyText from '../components/ShinyText'
-import { motion } from 'framer-motion'
+import CountUp from '../components/CountUp'
 
 export default function Home() {
   const gridRef = useRef(null)
@@ -76,7 +75,7 @@ export default function Home() {
         className="fixed inset-0 z-[0] bg-cover bg-center pointer-events-none"
         style={{ backgroundImage: 'url("public/img/background-tower.jpeg")' }}
       />
-      <div className="fixed inset-0 z-[0] bg-black/30 pointer-events-none" />
+      <div className="fixed inset-0 z-[0] bg-[#09346A]/20 pointer-events-none" />
 
       <div className="-mt-16 relative z-[10]">
         {/* Hero content */}
@@ -145,7 +144,7 @@ export default function Home() {
           >
             {/* Join + Stats */}
              <div className="relative z-[1] px-[45px] pt-50 pb-50">
-              <div className="text-center mb-10">
+              <div className="text-center mb-20">
                 <Link
                   to="/ace-member"
                   className="inline-flex items-center transition-colors"
@@ -167,46 +166,29 @@ export default function Home() {
                   />
               </Link>
             </div>
-
-              {/* Stats grid */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-15 px-15 pt-20 pb-20">
-                {[
-                  { src: '/img/UNDERGRADUATESTUDENTS.jpeg', alt: 'Undergraduate Students' },
-                  { src: '/img/PUBLICAWARENESSINITIATIVES.jpeg', alt: 'Public Awareness Initiatives' },
-                  { src: '/img/LARGESTCASECOMPETITION.png', alt: 'Largest Case Competition in Canada' }
-                ].map((item, index) => (
-                   <motion.div
-                     key={index}
-                      className="stat-card rounded-2xl aspect-[19/25] w-full"
-                     initial={{ opacity: 0, y: 50 }}
-                     whileInView={{ opacity: 1, y: 0 }}
-                     viewport={{ once: true, margin: '-80px' }}
-                     transition={{ duration: 2, delay: index * 0.12, ease: [0.21, 0.92, 0.25, 1] }}
-                   >
-                     <ProfileCard
-                       name=""
-                       title=""
-                       handle=""
-                       status=""
-                       contactText=""
-                       avatarUrl={item.src}
-                       showUserInfo={false}
-                       enableTilt={true}
-                       enableMobileTilt={true}
-                       onContactClick={() => {}}
-                       behindGlowEnabled={true}
-                       innerGradient="transparent"
-                       grainUrl="/img/GrainEffect.jpg"
-                       fullImageMode
-                       className="stat-profile-card w-full h-full"
-                     />
-                  </motion.div>
-                ))}
-              </div>
+            <hr />
+                {/* Stats: numbers & tiny text (animated, grid: two on top, one down) */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-y-8 text-center px-4 py-20"> 
+                  {[
+                    { to: 1, prefix: '# ', suffix: '', separator: '', desc: 'Largest Case Competition in Canada' },
+                    { to: 50000, prefix: '#', suffix: '+', separator: ',', desc: 'Public Awareness Initiatives' },
+                    { to: 100, prefix: '', suffix: '+', separator: '', desc: 'Undergraduate Students Joined' }
+                  ].map((stat, index) => (
+                    <div key={index} >
+                      <div className="text-6xl md:text-6xl font-semibold tracking-[-1.5px] text-[#111827] mb-6 tabular-nums">
+                        {stat.prefix}<CountUp to={stat.to} separator={stat.separator} duration={1.6} />{stat.suffix}
+                      </div>
+                      <p className="text-sm md:text-[15px] text-[#444] tracking-[-0.2px] leading-snug">
+                        {stat.desc}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+            <hr />
          </div>
 
         {/* Achievements, Events & Partnerships — one unified section */}
-            <div className="px-[45px] pt-6 pb-12 relative z-[1]">
+        <div className="px-[45px] pb-12 relative z-[1]">
           <div
             ref={gridRef}
             className="achievements-grid grid grid-cols-1 gap-12 md:gap-16 pb-20 pt-10"

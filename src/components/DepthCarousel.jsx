@@ -34,6 +34,7 @@ const DepthCarousel = ({
   autoplayDelay = 3200,
   loop = true,
   showIndicators = true,
+  draggable = true,
   onChange,
   className = ''
 }) => {
@@ -77,9 +78,10 @@ const DepthCarousel = ({
       ease,
       loop,
       cardWidth,
-      autoplayDelay
+      autoplayDelay,
+      draggable
     };
-  }, [count, depth, spread, tilt, tiltDirection, visibleCards, falloff, blur, duration, ease, loop, cardWidth, autoplayDelay]);
+  }, [count, depth, spread, tilt, tiltDirection, visibleCards, falloff, blur, duration, ease, loop, cardWidth, autoplayDelay, draggable]);
 
   const layout = useCallback(pos => {
     const cfg = cfgRef.current;
@@ -194,7 +196,7 @@ const DepthCarousel = ({
 
   useEffect(() => {
     const el = rootRef.current;
-    if (!el) return;
+    if (!el || !draggable) return;
     const onWheel = e => {
       const cfg = cfgRef.current;
       if (cfg.count < 2) return;
@@ -213,11 +215,11 @@ const DepthCarousel = ({
       el.removeEventListener('wheel', onWheel);
       if (wheelTimerRef.current) clearTimeout(wheelTimerRef.current);
     };
-  }, [layout, setFocus]);
+  }, [layout, setFocus, draggable]);
 
   const onPointerDown = useCallback(e => {
     const cfg = cfgRef.current;
-    if (cfg.count < 2) return;
+    if (!cfg.draggable || cfg.count < 2) return;
     tweenRef.current?.kill();
     dragRef.current = {
       x: e.clientX,
@@ -235,6 +237,7 @@ const DepthCarousel = ({
       const drag = dragRef.current;
       if (!drag) return;
       const cfg = cfgRef.current;
+      if (!cfg.draggable) return;
       const stepPx = Math.max(cfg.cardWidth * 0.55 * scaleRef.current, 40);
       const dx = e.clientX - drag.x;
       if (!drag.moved && Math.abs(dx) > 4) {
@@ -266,6 +269,8 @@ const DepthCarousel = ({
 
   const onKeyDown = useCallback(
     e => {
+      const cfg = cfgRef.current;
+      if (!cfg.draggable) return;
       if (e.key === 'ArrowLeft') {
         e.preventDefault();
         navigateBy(-1);
@@ -279,7 +284,8 @@ const DepthCarousel = ({
 
   const onCardClick = useCallback(
     index => {
-      if (dragRef.current?.moved) return;
+      const cfg = cfgRef.current;
+      if (!cfg.draggable || dragRef.current?.moved) return;
       setFocus(index, true);
     },
     [setFocus]
@@ -344,32 +350,34 @@ const DepthCarousel = ({
       aria-roledescription="carousel"
       aria-label="Depth carousel"
       tabIndex={0}
-      onPointerDown={onPointerDown}
-      onPointerMove={onPointerMove}
-      onPointerUp={onPointerEnd}
-      onPointerCancel={onPointerEnd}
-      onKeyDown={onKeyDown}
+      onPointerDown={draggable ? onPointerDown : undefined}
+      onPointerMove={draggable ? onPointerMove : undefined}
+      onPointerUp={draggable ? onPointerEnd : undefined}
+      onPointerCancel={draggable ? onPointerEnd : undefined}
+      onKeyDown={draggable ? onKeyDown : undefined}
     >
-      <div className="depth-carousel__stage" ref={stageRef}>
-        {data.map((item, i) => (
-          <div
-            key={i}
-            className="depth-carousel__card"
-            ref={el => (cardRefs.current[i] = el)}
-            style={{ width: cardWidth, height: cardHeight, borderRadius: radius }}
-            aria-roledescription="slide"
-            aria-label={`${i + 1} of ${count}`}
-            aria-hidden={active !== i}
-            onClick={() => onCardClick(i)}
-          >
-            <img className="depth-carousel__img" src={item.image} alt={item.alt || ''} draggable={false} />
-            <span
-              className="depth-carousel__tint"
-              ref={el => (overlayRefs.current[i] = el)}
-              style={{ background: tint }}
-            />
-          </div>
-        ))}
+      <div className="depth-carousel__stage-container" style={{ height: cardHeight }}>
+        <div className="depth-carousel__stage" ref={stageRef}>
+          {data.map((item, i) => (
+            <div
+              key={i}
+              className="depth-carousel__card"
+              ref={el => (cardRefs.current[i] = el)}
+              style={{ width: cardWidth, height: cardHeight, borderRadius: radius }}
+              aria-roledescription="slide"
+              aria-label={`${i + 1} of ${count}`}
+              aria-hidden={active !== i}
+              onClick={() => onCardClick(i)}
+            >
+              <img className="depth-carousel__img" src={item.image} alt={item.alt || ''} draggable={false} />
+              <span
+                className="depth-carousel__tint"
+                ref={el => (overlayRefs.current[i] = el)}
+                style={{ background: tint }}
+              />
+            </div>
+          ))}
+        </div>
       </div>
 
       {showIndicators && count > 1 && (
@@ -382,7 +390,7 @@ const DepthCarousel = ({
               aria-selected={active === i}
               aria-label={`Go to slide ${i + 1}`}
               className={`depth-carousel__dot${active === i ? ' is-active' : ''}`}
-              onClick={() => setFocus(i, true)}
+              onClick={() => { if (draggable) setFocus(i, true); }}
             />
           ))}
         </div>

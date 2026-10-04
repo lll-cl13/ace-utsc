@@ -18,6 +18,13 @@ export default function Navbar() {
   const location = useLocation()
   const isHome = location.pathname === '/'
   const isDarkPage = isHome
+  const darkText = "text-white"
+
+  const isActive = (path) => {
+    if (path === '/') return location.pathname === '/'
+    return location.pathname === path || location.pathname.startsWith(path + '/')
+  }
+  const isJoinActive = joinLinks.some(l => isActive(l.to))
 
   const openJoin = () => {
     if (joinTimeout.current) clearTimeout(joinTimeout.current)
@@ -33,23 +40,23 @@ export default function Navbar() {
       <div className={`${isDarkPage ? '' : 'bg-white'} px-[45px] flex items-center justify-between h-16`}>
         <Link to="/" className="flex items-center gap-3">
           <img
-            src="https://aceuoft.wordpress.com/wp-content/uploads/2023/09/ace-utsc-logo-1.png"
+            src="/img/ace-utsc-logo-1.png"
             alt="ACE UTSC"
             className="h-9 w-auto"
           />
-          <span className={`text-sm tracking-tight hover:underline font-['League_Spartan',sans-serif] ${isDarkPage ? 'text-white' : 'text-[#00205B]'}`}>ACE UTSC</span>
+          <span className={`text-sm tracking-tight hover:underline font-['League Spartan',sans-serif] text-[#00205B] hover:text-[#00205B]/70`}>ACE UTSC</span>
         </Link>
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8 text-sm font-medium">
           {navLinks.map((l) => (
-            <Link key={l.to} to={l.to} className={`transition-colors hover:underline underline-offset-4 ${isDarkPage ? 'text-white hover:text-white/80' : 'hover:text-[#00205B]'}`}>
+            <Link key={l.to} to={l.to} className={`transition-colors hover:underline underline-offset-4 ${isActive(l.to) ? 'underline' : ''} ${isDarkPage ? `${darkText} hover:text-white/80` : 'text-[#00205B] hover:text-[#00205B]/70'}`}>
               {l.label}
             </Link>
           ))}
 
           <div className="relative" onMouseEnter={openJoin} onMouseLeave={closeJoin}>
-            <button className={`flex items-center gap-1 transition-colors hover:underline underline-offset-4 ${isDarkPage ? 'text-white hover:text-white/80' : 'hover:text-[#00205B]'}`}>
+            <button className={`flex items-center gap-1 transition-colors hover:underline underline-offset-4 ${isJoinActive ? 'underline' : ''} ${isDarkPage ? `${darkText} hover:text-white/80` : 'text-[#00205B] hover:text-[#00205B]/70'}`}>
               Join Us
               <span className="text-xs">▼</span>
             </button>
@@ -60,7 +67,7 @@ export default function Navbar() {
                 onMouseLeave={closeJoin}
               >
                 {joinLinks.map((l) => (
-                  <Link key={l.to} to={l.to} className="block px-4 py-2 text-sm hover:underline underline-offset-2 hover:bg-gray-50">
+                  <Link key={l.to} to={l.to} className={`block px-4 py-2 text-sm hover:underline underline-offset-2 hover:bg-gray-50 ${isActive(l.to) ? 'underline' : ''}`}>
                     {l.label}
                   </Link>
                 ))}
@@ -68,17 +75,17 @@ export default function Navbar() {
             )}
           </div>
 
-          <Link to="/our-team-2025-2026" className={`transition-colors hover:underline underline-offset-4 ${isDarkPage ? 'text-white hover:text-white/80' : 'hover:text-[#00205B]'}`}>
+          <Link to="/our-team-2025-2026" className={`transition-colors hover:underline underline-offset-4 ${isActive('/our-team-2025-2026') ? 'underline' : ''} ${isDarkPage ? `${darkText} hover:text-white/80` : 'text-[#00205B] hover:text-[#00205B]/70'}`}>
             Our Team
           </Link>
-          <Link to="/contact" className={`transition-colors hover:underline underline-offset-4 ${isDarkPage ? 'text-white hover:text-white/80' : 'hover:text-[#00205B]'}`}>
+          <Link to="/contact" className={`transition-colors hover:underline underline-offset-4 ${isActive('/contact') ? 'underline' : ''} ${isDarkPage ? `${darkText} hover:text-white/80` : 'text-[#00205B] hover:text-[#00205B]/70'}`}>
             Contact Us
           </Link>
         </div>
 
         {/* Mobile hamburger */}
         <button
-          className={`md:hidden text-2xl ${isDarkPage ? 'text-white' : ''}`}
+          className={`md:hidden text-2xl ${isDarkPage ? darkText : 'text-[#00205B]'}`}
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
         >
@@ -88,16 +95,16 @@ export default function Navbar() {
  
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className={`md:hidden border-t px-[45px] py-4 flex flex-col gap-3 text-sm ${isDarkPage ? 'bg-[#120F17] text-white' : 'bg-white'}`}>
+        <div className={`md:hidden border-t px-[45px] py-4 flex flex-col gap-3 text-sm ${isDarkPage ? 'bg-[#120F17] text-white' : 'bg-white text-[#00205B]'}`}>
           {navLinks.map((l) => (
-            <Link key={l.to} to={l.to} onClick={() => setMobileOpen(false)} className="hover:underline underline-offset-2">{l.label}</Link>
+            <Link key={l.to} to={l.to} onClick={() => setMobileOpen(false)} className={`hover:underline underline-offset-2 ${isActive(l.to) ? 'underline' : ''}`}>{l.label}</Link>
           ))}
           <div className="font-medium">Join Us</div>
           {joinLinks.map((l) => (
-            <Link key={l.to} to={l.to} className="pl-4 hover:underline underline-offset-2" onClick={() => setMobileOpen(false)}>{l.label}</Link>
+            <Link key={l.to} to={l.to} className={`pl-4 hover:underline underline-offset-2 ${isActive(l.to) ? 'underline' : ''}`} onClick={() => setMobileOpen(false)}>{l.label}</Link>
           ))}
-          <Link to="/our-team-2025-2026" onClick={() => setMobileOpen(false)} className="hover:underline underline-offset-2">Our Team</Link>
-          <Link to="/contact" onClick={() => setMobileOpen(false)} className="hover:underline underline-offset-2">Contact Us</Link>
+          <Link to="/our-team-2025-2026" onClick={() => setMobileOpen(false)} className={`hover:underline underline-offset-2 ${isActive('/our-team-2025-2026') ? 'underline' : ''}`}>Our Team</Link>
+          <Link to="/contact" onClick={() => setMobileOpen(false)} className={`hover:underline underline-offset-2 ${isActive('/contact') ? 'underline' : ''}`}>Contact Us</Link>
         </div>
       )}
     </nav>
