@@ -30,7 +30,8 @@ const itemVariants = {
 export default function TeamHiring() {
   return (
     <div>
-      <div className="px-[45px] py-6">
+      <div className="px-[45px] py-6 " 
+      style={{ backgroundImage: "url('/img/background3.png')" }}>
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -72,16 +73,17 @@ export default function TeamHiring() {
             className="mt-4 font-medium"
           >
             📅 Application Deadline: October 7 at 11:59 PM
-          </motion.p>
+            </motion.p>
+            <motion.p 
+            variants={itemVariants}
+            className="mt-4"
+          >
+            <a href="https://forms.gle/6Z7g1k3v5y8X9J2u5" target="_blank" rel="noopener noreferrer" className="underline hover:text-[#00205B]">
+              APPLY HERE! →
+            </a>
+            </motion.p>
         </motion.div>
-        <motion.p 
-          variants={itemVariants}
-          className="mt-4"
-        >
-          <a href="https://forms.gle/6Z7g1k3v5y8X9J2u5" target="_blank" rel="noopener noreferrer" className="underline hover:text-[#00205B]">
-            APPLY HERE! →
-          </a>
-        </motion.p>
+
 
         <div style={{ marginTop: 32 }}>
           <iframe 

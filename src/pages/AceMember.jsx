@@ -37,11 +37,11 @@ const carouselItems = [
     alt: 'ACE Nationals 2024',
   },
   {
-    image: '/img/img_2725-1.png',
+    image: '/img/img_2725-1.jpg',
     alt: 'Event Photo',
   },
   {
-    image: '/img/events/2324_AceInvitationals_2.jpg',
+    image: '/img/events/2324_AceInvitationals_2.png',
     alt: 'Event Photo',
   },
 ];
@@ -57,12 +57,12 @@ export default function AceMember() {
           viewport={{ once: true, amount: 0.6 }}
           transition={{ duration: 0.6 }}
         >
-          Become an ACE Member
+          Become an ACE Member (Delegate)
         </motion.h1>
       </div>
 
       {/* Landscape Depth Carousel at top */}
-      <div className="w-full mb-8" style={{ height: '580px', position: 'relative' }}>
+      <div className="w-full mb-8" style={{ height: '550px', position: 'relative' }}>
         <DepthCarousel
           items={carouselItems}
           depth={180}
@@ -100,7 +100,7 @@ export default function AceMember() {
             Your quick guide on becoming an ACE UTSC General Member to ACE Canada Delegate.
           </motion.p>
           <motion.p variants={itemVariants} className="mb-6 text-lg">
-            Stay tuned for our revised 2024/2025 Delegate Package!
+            Stay tuned for our revised 2026/2027 Delegate Package!
           </motion.p>
           {/* adjust to preview later */}
           <motion.p variants={itemVariants} className="mb-6 text-lg leading-relaxed">
@@ -122,10 +122,13 @@ export default function AceMember() {
           </motion.p>
 
           <motion.h3 variants={itemVariants} className="text-4xl font-semibold mb-2 py-2">
-            General Member Registration — Now Open
+            General Member (Delegate) Registration — Now Open
           </motion.h3>
           <motion.p variants={itemVariants} className="mb-4 text-lg">
             Complete the <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_pGgnT4ApYzyy1QqOouFcTP0WTYzL7UspVJ8iU26dma1AvQ/viewform?pli=1" target="_blank" className="underline hover:text-[#00205B]">Google Form</a>
+          </motion.p>
+          <motion.p variants={itemVariants} className="mb-4 text-lg">
+            Deadline: Friday, October 23, 2026
           </motion.p>
 
           <motion.h3 variants={itemVariants} className="text-4xl font-semibold mb-3 py-2">
@@ -143,7 +146,7 @@ export default function AceMember() {
           </motion.ol>
 
           <motion.h3 variants={itemVariants} className="text-xl font-semibold mb-2">
-            ACE UTSC General Member Benefits:
+            ACE UTSC General Member (Registered Delegate) Benefits:
           </motion.h3>
           <motion.ul 
             variants={containerVariants}

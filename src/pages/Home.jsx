@@ -6,7 +6,6 @@ import SplitFlapText from '../components/SplitFlapText'
 import GlareHover from '../components/GlareHover'
 import GradientText from '../components/GradientText'
 import ProfileCard from '../components/ProfileCard'
-import AeroShards from '../components/AeroShards'
 import ShinyText from '../components/ShinyText'
 import { motion } from 'framer-motion'
 
@@ -91,11 +90,11 @@ export default function Home() {
             />
             <h1>
               <ScrollFloat
-                containerClassName="text-7xl md:text-8xl font-semibold tracking-[-2px]"
+                containerClassName="text-7xl md:text-8xl font-semibold tracking-[-2px] text-white"
                 scrollStart="top bottom+=50%"
                 scrollEnd="bottom bottom"
               >
-                ACE UTSC
+                ACE UTSC 
               </ScrollFloat>
             </h1>
           </div>
@@ -233,7 +232,7 @@ export default function Home() {
                  playOnce={true}
                >
                  <img
-                   src="public/img/img_5568-1-edited.jpg"
+                   src="/img/AceNationalsEdited.jpeg"
                    alt="Achievements"
                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.1]"
                  />
@@ -242,7 +241,7 @@ export default function Home() {
               <div className="achievement-description bg-white/80 p-3 rounded-md">
                <h2 className="text-3xl font-semibold mb-2.5 tracking-[-0.3px]">Achievements</h2>
                <p className="text-xl leading-relaxed text-[#333]">
-                 Our team has proudly secured <strong><ShinyText text="Top 5" color="#000000" shineColor="#ffdddd" speed={2} /></strong> in Fashion and Retail Management, <strong><ShinyText text="3rd Place" color="#000000" shineColor="#ffdddd" speed={2} /></strong> in both Restaurant and Food Services Management and Marketing Management, and <strong><ShinyText text="2nd Place" color="#000000" shineColor="#ffdddd" speed={2} /></strong> in Travel Management.
+                 Our team has proudly secured <strong><ShinyText text="3rd Place" color="#000000" shineColor="#D4AF37" speed={2} /></strong> in EY Ripples, <strong><ShinyText text="Top 5" color="#000000" shineColor="#D4AF37" speed={2} /></strong> in Accounting, Management Consulting, and Travel Management at the ACE Nationals, competing against more than 20 students chapters from across Canada.
                </p>
              </div>
            </div>
@@ -302,7 +301,7 @@ export default function Home() {
                  playOnce={true}
                >
                  <img
-                   src="/img/Partnership-icon-Graphics-10261127-1-1-580x386.jpg"
+                   src="/img/events/2324_AceInvitationals_4.jpg"
                    alt="UTSC Campus"
                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.1]"
                  />

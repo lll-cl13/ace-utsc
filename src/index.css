@@ -46,12 +46,14 @@
     font-size: clamp(3rem, 6vw, 4.5rem);
     line-height: 1.05;
     font-weight: 700;
+    color: #00205B;
   }
 
   h2 {
     font-size: clamp(1.875rem, 3.5vw, 2.5rem);
     line-height: 1.15;
     font-weight: 600;
+    color: #00205B;
   }
 
   h3 {

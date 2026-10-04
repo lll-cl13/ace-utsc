@@ -1,9 +1,12 @@
 export default function About() {
   return (
-    <div className="relative bg-white text-[#222] flex-1 flex flex-col overflow-hidden">
+    <div 
+      className="relative bg-white text-[#222] flex-1 flex flex-col overflow-hidden bg-contain bg-center bg-repeat-y" 
+      style={{ backgroundImage: "url('/img/background3.png')" }}
+    >
       {/* Contained header */}
       <div className="relative z-10 px-[45px] py-6 pb-4">
-        <h1 className="text-4xl font-semibold tracking-[-1px] mb-8">About Us</h1>
+        <h1 className="text-4xl font-semibold tracking-[-1px] mb-6">About Us</h1>
       </div>
 
       {/* Image left + text right */}
@@ -51,27 +54,27 @@ export default function About() {
         <p className="mb-6 text-lg leading-[1.72]">ACE UTSC has proudly received sponsorship from a range of reputable organizations, including:</p>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8 text-center ">
-          <div>
+          <div className="mb-6 md:mb-0 hover:scale-105 hover:underline transition-transform duration-300">
             <a href="https://www.ey.com/" target="_blank" rel="noopener noreferrer">
-              <img src="/img/552707593_1483908372940497_6092641396353532351_n.jpg" alt="EY" className="h-50 md:h-100 mx-auto object-contain mb-3" />
+              <img src="/img/552707593_1483908372940497_6092641396353532351_n.jpg" alt="EY" className="h-50 md:h-100 mx-auto object-contain mb-3 hover:shadow-sm rounded-2xl" />
             </a>
             <div className="font-semibold text-base md:text-lg">EY</div>
           </div>
-          <div>
+          <div className="mb-6 md:mb-0 hover:scale-105 hover:underline transition-transform duration-300">
             <a href="https://mmpa.utoronto.ca" target="_blank" rel="noopener noreferrer">
-              <img src="/img/553043371_817168714099790_9159688809164605491_n_resized.jpg" alt="UofT MMPA" className="h-50 md:h-100 mx-auto object-contain mb-3 border-radius: 8px" />
+              <img src="/img/553043371_817168714099790_9159688809164605491_n_resized.jpg" alt="UofT MMPA" className="h-50 md:h-100 mx-auto object-contain mb-3 border-radius: 8px hover:shadow-sm rounded-2xl" />
             </a>
             <div className="font-semibold text-base md:text-lg">UofT MMPA</div>
           </div>
-          <div>
+          <div className="mb-6 md:mb-0 hover:scale-105 hover:underline transition-transform duration-300">
             <a href="https://icubeutm.ca" target="_blank" rel="noopener noreferrer">
-              <img src="/img/554337631_4164718567180340_6030518401904829660_n_cropped_cropped_resized.png" alt="ICUBE UTM" className="h-50 md:h-100 mx-auto object-contain mb-3" />
+              <img src="/img/554337631_4164718567180340_6030518401904829660_n_cropped_cropped_resized.png" alt="ICUBE UTM" className="h-50 md:h-100 mx-auto object-contain mb-3 hover:shadow-sm rounded-2xl" />
             </a>
             <div className="font-semibold text-base md:text-lg">ICUBE UTM</div>
           </div>
-          <div>
+          <div className="mb-6 md:mb-0 hover:scale-105 hover:underline transition-transform duration-300">
             <a href="https://cfatoronto.ca/" target="_blank" rel="noopener noreferrer">
-              <img src="/img/553754636_1981939729254480_7985881626194828189_n_resized.jpg" alt="the CFA Society" className="h-50 md:h-100 mx-auto object-contain mb-3" />
+              <img src="/img/553754636_1981939729254480_7985881626194828189_n_resized.jpg" alt="the CFA Society" className="h-50 md:h-100 mx-auto object-contain mb-3 hover:shadow-sm rounded-2xl" />
             </a>
             <div className="font-semibold text-base md:text-lg">CFA Society</div>
           </div>
@@ -80,6 +83,18 @@ export default function About() {
         <p className="text-lg leading-[1.72]">
           These sponsors support our flagship events such as the <strong>ACE Invitationals</strong>. EY in particular has been deeply engaged, contributing judges and valuable industry insight to our students.
         </p>
+      </div>
+
+      {/* Delegate Training Program*/}
+      <div className="relative z-10 px-[45px] py-10 md:py-12">
+        <h2 className="text-4xl font-semibold mb-5 tracking-[-0.4px]">Delegate Training Program</h2>
+            <p className="mb-6 text-lg leading-[1.72]">Looking to build your <strong>confidence</strong> and <strong>excel in case competitions</strong>? The ACE UTSC Training Program offers a hands-on learning experience designed to help delegates develop <strong>strong case analysis</strong>, problem-solving, presentation, and communication skills. Whether you're competing for the first time or aiming to refine your approach, you'll have access to exclusive resources, personalized feedback, and <strong>mentorship from our Delegate Development Directors</strong>.</p>
+            <p className="mb-6 text-lg leading-[1.72]">Starting in mid-October, delegates can book <strong>virtual or in-person training sessions </strong> tailored to their goals. These sessions focus on case structuring, presentation delivery, and skill development, while providing <strong>actionable feedback</strong> to support continuous growth. Combined with regular practice opportunities and a supportive community, the program equips delegates with the tools and experience needed to perform <strong>confidently</strong> in future competitions.</p>
+            <p className="mb-6 text-lg leading-[1.72]"><strong>Ready to get involved?</strong> Follow ACE UTSC on Instagram and register through the link in our bio to join our delegate community and gain access to a year of <strong>training</strong>, <strong>mentorship</strong>, and <strong>competitive opportunities</strong>.</p>
+            <img 
+              src="/img/events/2526_AceInvitationals_3.jpeg" 
+              alt="Delegate Training" 
+              className="w-full rounded-2xl w-full h-full max-h-150 object-cover" />
       </div>
     </div>
   )

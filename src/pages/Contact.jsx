@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion'
-import StaticDottedStars from '../components/StaticDottedStars'
 
 const containerVariants = {
   hidden: {},
@@ -29,7 +28,8 @@ const itemVariants = {
 
 export default function Contact() {
   return (
-    <div className="relative bg-white text-[#222] flex-1 flex flex-col overflow-hidden">
+    <div className="relative bg-white text-[#222] flex-1 flex flex-col overflow-hidden bg-contain bg-center bg-repeat-y"
+    style={{ backgroundImage: "url('/img/background3.png')" }}>
       <div className="relative z-10 px-[45px] py-6">
         <motion.h1 
           className="text-4xl font-semibold tracking-[-1px] mb-8"

@@ -35,7 +35,7 @@ export const eventsByYear = [
         imgs: [
           '/img/events/2526_AceNationals_1.jpeg',
           '/img/events/2526_AceNationals_2.jpeg',
-          '/img/events/2526_AceNationals_3.jpeg',
+          '/img/events/2526_AceNationals_3.jpg',
         ],
         body: 'A huge thank you to all of our students for their incredible performance at this year’s ACE Nationals! Beyond the competition itself, you have gained the kind of real-world experience and professional connections that simply can’t be taught in a classroom.\n\nWe are incredibly proud of the way you represented our chapter, showing not just technical skill, but the maturity and growth that define the next generation of industry leaders. We look forward to seeing the incredible things you’ll achieve next with these new insights in hand!\n\nA special congratulations to our winning team:\nDarren Joseph, Chloe Lai, Nicholas Mok, Xintong Zhang - 3rd @ EY Ripples Challenge\nMaryam Rehman — Accounting Top 5\nJessen Comia — Management Consulting Top 5\nRachel Sun — Travel Management Top 5',
       },

@@ -269,13 +269,13 @@ export default function Events() {
                        </div>
 
                       <div className="mt-1 pl-1 min-h-[42px] flex-shrink-0">
-                        <div className="text-[13px] font-semibold tracking-[-0.2px] leading-tight group-hover:underline">
-                          {slide.title}
-                        </div>
-                        <div className="mt-0.5 text-[9px] text-[#00205B]/70 space-y-[1px]">
-                          <div>📅 {slide.date}</div>
-                          <div>📍 {slide.location}</div>
-                        </div>
+<div className="text-[13px] font-semibold tracking-[-0.2px] leading-tight transition-all duration-200 group-hover:underline group-hover:decoration-1 group-hover:underline-offset-1 group-hover:font-bold">
+                           {slide.title}
+                         </div>
+<div className="mt-0.5 text-[9px] text-[#00205B]/70 space-y-[1px]">
+                           <div className="transition-all duration-200 group-hover:underline group-hover:decoration-1 group-hover:underline-offset-1 group-hover:font-bold">📅 {slide.date}</div>
+                           <div className="transition-all duration-200 group-hover:underline group-hover:decoration-1 group-hover:underline-offset-1 group-hover:font-bold">📍 {slide.location}</div>
+                         </div>
                       </div>
                     </Link>
                   </div>
@@ -312,10 +312,11 @@ export default function Events() {
                       </GlareHover>
                     </div>
                     <div className="mt-3">
-                      <div className="text-[18px] font-semibold tracking-[-0.2px] group-hover:underline group-hover:font-bold">{ev.title}</div>
-                      <div className="mt-1 text-[13px] text-[#00205B]/70 group-hover:underline group-hover:font-black">
-                        📅 {ev.date}<br />📍 {ev.location}
-                      </div>
+                      <div className="text-[18px] font-semibold tracking-[-0.2px] transition-all duration-200 group-hover:underline group-hover:decoration-1 group-hover:underline-offset-1 group-hover:font-bold">{ev.title}</div>
+<div className="mt-1 text-[13px] text-[#00205B]/70">
+                          <span className="transition-all duration-200 group-hover:underline group-hover:decoration-1 group-hover:underline-offset-1">📅 {ev.date}</span><br />
+                          <span className="transition-all duration-200 group-hover:underline group-hover:decoration-1 group-hover:underline-offset-1">📍 {ev.location}</span>
+                        </div>
                     </div>
                   </Link>
                 ))}
