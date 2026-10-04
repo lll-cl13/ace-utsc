@@ -141,8 +141,7 @@ export default function Home() {
            </div>
   
           <div
-            className="min-h-screen w-full bg-repeat bg-auto bg-center"
-            style={{ backgroundImage: "url('/img/background.jpg')" }}
+            className="min-h-screen w-full bg-white"
           >
             {/* Join + Stats */}
              <div className="relative z-[1] px-[45px] pt-50 pb-50">
@@ -241,7 +240,7 @@ export default function Home() {
               <div className="achievement-description bg-white/80 p-3 rounded-md">
                <h2 className="text-3xl font-semibold mb-2.5 tracking-[-0.3px]">Achievements</h2>
                <p className="text-xl leading-relaxed text-[#333]">
-                 Our team has proudly secured <strong><ShinyText text="3rd Place" color="#000000" shineColor="#D4AF37" speed={2} /></strong> in EY Ripples, <strong><ShinyText text="Top 5" color="#000000" shineColor="#D4AF37" speed={2} /></strong> in Accounting, Management Consulting, and Travel Management at the ACE Nationals, competing against more than 20 students chapters from across Canada.
+                 Our team has proudly secured <strong>3rd Place</strong> in EY Ripples, <strong>Top 5</strong> in Accounting, Management Consulting, and Travel Management at the ACE Nationals, competing against more than 20 students chapters from across Canada.
                </p>
              </div>
            </div>
@@ -275,7 +274,7 @@ export default function Home() {
               <div className="achievement-description bg-white/80 p-3 rounded-md">
                <h2 className="text-3xl font-semibold mb-2.5 tracking-[-0.3px]">Events</h2>
                <p className="text-xl leading-relaxed text-[#333]">
-                 We run <strong><ShinyText text="ACE Invitationals" color="#000000" shineColor="#ffdddd" speed={2} /></strong>, <strong><ShinyText text="ACE Chronicles" color="#000000" shineColor="#ffdddd" speed={2} /></strong>, and <strong><ShinyText text="ELA" color="#000000" shineColor="#ffdddd" speed={2} /></strong> — events designed to equip students with the skills and experiences needed to succeed in the workplace.
+                 We run <strong>ACE Invitationals</strong>, <strong>ACE Chronicles</strong>, and <strong>ELA</strong> — events designed to equip students with the skills and experiences needed to succeed in the workplace.
                </p>
                <p className="mt-3 text-4sm"><Link to="/events" className="underline decoration-1 underline-offset-2 hover:text-[#00205B]">See all events →</Link></p>
              </div>
@@ -310,7 +309,7 @@ export default function Home() {
               <div className="achievement-description bg-white/80 p-3 rounded-md">
                <h2 className="text-3xl font-semibold mb-2.5 tracking-[-0.3px]">Partnerships</h2>
                <p className="text-xl leading-relaxed text-[#333]">
-                 Proudly sponsored by <strong><ShinyText text="EY" color="#000000" shineColor="#ffdddd" speed={2} /></strong>, <strong><ShinyText text="UofT MMPA" color="#000000" shineColor="#ffdddd" speed={2} /></strong>, <strong><ShinyText text="ICUBE UTM" color="#000000" shineColor="#ffdddd" speed={2} /></strong>, and <strong><ShinyText text="the CFA Society" color="#000000" shineColor="#ffdddd" speed={2} /></strong>. We have also collaborated with RBC, Deloitte, York Region, AutoTrader, and more.
+                 Proudly sponsored by <strong>EY</strong>, <strong>UofT MMPA</strong>, <strong>ICUBE UTM</strong>, and <strong>the CFA Society</strong>. We have also collaborated with RBC, Deloitte, York Region, AutoTrader, and more.
                </p>
             </div>
             </div>

@@ -11,7 +11,6 @@ import OurTeam from './pages/OurTeam'
 import Contact from './pages/Contact'
 import EventDetail from './pages/EventDetail'
 import WelcomeScreen from './components/WelcomeScreen';
-import Cursor from './components/Cursor'
 
 function Layout({ children }) {
   return (
@@ -31,7 +30,6 @@ export default function App() {
       {showWelcome ? (
         <>
           <WelcomeScreen onComplete={() => setShowWelcome(false)} />
-          <Cursor />
         </>
       ) : (
         <>
@@ -47,7 +45,6 @@ export default function App() {
               <Route path="/contact" element={<Contact />} />
             </Routes>
           </Layout>
-          <Cursor />
         </>
       )}
     </BrowserRouter>

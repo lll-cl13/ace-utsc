@@ -24,13 +24,13 @@ export const teams = {
     { name: 'Minahil Asad', role: 'Director of Events', img: '/img/team/16.png', linkedin: 'https://www.linkedin.com/in/minahilasad/' },
   ],
   'Finance': [
-    { name: 'Minghao Zhang', role: 'VP of Finance', img: '/img/team/17.png?w=1024', linkedin: 'https://www.linkedin.com/in/minghaozhang/' },
-    { name: 'Maira Omar', role: 'Director of Finance', img: '/img/team/18.png?w=1024', linkedin: 'https://www.linkedin.com/in/maira-omar-b72378383/' },
+    { name: 'Minghao Zhang', role: 'VP of Finance', img: '/img/team/17.png', linkedin: 'https://www.linkedin.com/in/minghaozhang/' },
+    { name: 'Maira Omar', role: 'Director of Finance', img: '/img/team/18.png', linkedin: 'https://www.linkedin.com/in/maira-omar-b72378383/' },
   ],
   'Marketing': [
     { name: 'Farheen Shuja', role: 'VP of Marketing', img: '/img/team/19.png', linkedin: 'https://www.linkedin.com/in/farheen-shuja/' },
-    { name: 'Bella Ly', role: 'Director of Marketing Strategy', img: '/img/team/20.png?w=1024', linkedin: 'https://www.linkedin.com/in/bella-ly-5a1751382/' },
+    { name: 'Bella Ly', role: 'Director of Marketing Strategy', img: '/img/team/20.png', linkedin: 'https://www.linkedin.com/in/bella-ly-5a1751382/' },
     { name: 'Muchen Xie', role: 'Director of Creativity & Design', img: '/img/team/21.png', linkedin: 'https://www.linkedin.com/in/muchenxie/' },
-    { name: 'Chloe Lai', role: 'Director of IT', img: '/img/team/22.png?w=1024', linkedin: 'https://www.linkedin.com/in/chloemylai/' },
+    { name: 'Chloe Lai', role: 'Director of IT', img: '/img/team/22.png', linkedin: 'https://www.linkedin.com/in/chloemylai/' },
   ],
 }

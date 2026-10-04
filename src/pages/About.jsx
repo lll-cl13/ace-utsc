@@ -1,8 +1,7 @@
 export default function About() {
   return (
     <div 
-      className="relative bg-white text-[#222] flex-1 flex flex-col overflow-hidden bg-contain bg-center bg-repeat-y" 
-      style={{ backgroundImage: "url('/img/background3.png')" }}
+      className="relative bg-white text-[#222] flex-1 flex flex-col overflow-hidden"
     >
       {/* Contained header */}
       <div className="relative z-10 px-[45px] py-6 pb-4">

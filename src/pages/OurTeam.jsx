@@ -1,5 +1,4 @@
 import GlareHover from '../components/GlareHover'
-import TextLoop from '../components/TextLoop'
 import { teams } from '../data/team'
 
 export default function OurTeam() {
@@ -49,26 +48,6 @@ export default function OurTeam() {
         </div>
       ))}
     </div>
-
-      <div>
-        <TextLoop
-          text="ACE UTSC"
-          shape="wave"
-          speed={90}
-          direction="forward"
-          separator="✦"
-          curviness={68}
-          fontSize={46}
-          fontWeight={800}
-          letterSpacing={0.5}
-          uppercase
-          color="#ffffff"
-          ribbon
-          ribbonColor="#09346A"
-          ribbonWidth={86}
-          pauseOnHover={false}
-        />
-      </div>
     </>
   )
 }
