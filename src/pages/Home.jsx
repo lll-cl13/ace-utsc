@@ -3,7 +3,6 @@ import { useRef, useLayoutEffect } from 'react'
 import ScrollReveal from '../components/ScrollReveal'
 import ScrollFloat from '../components/ScrollFloat'
 import SplitFlapText from '../components/SplitFlapText'
-import GlareHover from '../components/GlareHover'
 import GradientText from '../components/GradientText'
 import ShinyText from '../components/ShinyText'
 import CountUp from '../components/CountUp'
@@ -73,7 +72,7 @@ export default function Home() {
       {/* Stable fixed background layer (above body bg, below content) */}
       <div
         className="fixed inset-0 z-[0] bg-cover bg-center pointer-events-none"
-        style={{ backgroundImage: 'url("public/img/background-tower.jpeg")' }}
+        style={{ backgroundImage: 'url("/img/background-tower.jpeg")' }}
       />
       <div className="fixed inset-0 z-[0] bg-[#09346A]/20 pointer-events-none" />
 

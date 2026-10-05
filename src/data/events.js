@@ -12,9 +12,6 @@ export const eventsByYear = [
         imgs: [
           '/img/events/2627_AllAboutACE_1.jpeg',
           '/img/events/2627_AllAboutACE_2.jpg',
-          '/img/events/2627_AllAboutACE_3.heic',
-          '/img/events/2627_AllAboutACE_4.heic',
-          '/img/events/2627_AllAboutACE_5.heic',
           '/img/events/2627_AllAboutACE_6.jpeg',
           '/img/events/2627_AllAboutACE_7.jpeg',
         ],

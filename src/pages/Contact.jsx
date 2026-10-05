@@ -29,7 +29,7 @@ const itemVariants = {
 export default function Contact() {
   return (
     <div className="relative bg-white text-[#222] flex-1 flex flex-col overflow-hidden bg-contain bg-center bg-repeat-y"
-    style={{ backgroundImage: "url('/img/background3.png')" }}>
+>
       <div className="relative z-10 px-[45px] py-6">
         <motion.h1 
           className="text-4xl font-semibold tracking-[-1px] mb-8"
@@ -72,7 +72,7 @@ export default function Contact() {
               variants={itemVariants}
               href="https://www.instagram.com/aceutsc/" 
               target="_blank" 
-              rel="noreferrer"
+              rel="noopener noreferrer"
               aria-label="Instagram"
             >
               <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" className="w-4 h-4 grayscale hover:grayscale-0 transition" />
@@ -81,7 +81,7 @@ export default function Contact() {
               variants={itemVariants}
               href="https://www.linkedin.com/company/ace-utsc/" 
               target="_blank" 
-              rel="noreferrer"
+              rel="noopener noreferrer"
               aria-label="LinkedIn"
             >
               <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" className="w-4 h-4 grayscale hover:grayscale-0 transition" />

@@ -135,6 +135,7 @@ const SplitFlapText = ({
 
     const firstPhrase = normalizedPhrases[0] || '';
     currentTextRef.current = firstPhrase;
+    // oxlint-disable-next-line react/set-state-in-effect
     setTiles(createTiles(firstPhrase));
 
 

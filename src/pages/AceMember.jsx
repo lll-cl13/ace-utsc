@@ -79,12 +79,12 @@ export default function AceMember() {
           </motion.p>
           {/* adjust to preview later */}
           <motion.p variants={itemVariants} className="mb-6 text-lg leading-relaxed">
-            <a href="https://pdflink.to/aceutscdelegatehandbook/" target="_blank" className="underline hover:text-[#00205B]">
+            <a href="https://pdflink.to/aceutscdelegatehandbook/" target="_blank" rel="noopener noreferrer" className="underline hover:text-[#00205B]">
               <img src="/img/delegate_handbook.png" alt="Delegate Handbook" className="w-full max-w-lg mx-auto mt-4" />
             </a>
           </motion.p> 
           <motion.p variants={itemVariants} className="mb-8 text-2sm">
-            <a href="https://pdflink.to/aceutscdelegatehandbook/" target="_blank" className="underline hover:text-[#00205B]">
+            <a href="https://pdflink.to/aceutscdelegatehandbook/" target="_blank" rel="noopener noreferrer" className="underline hover:text-[#00205B]">
               View Our Delegate Package →
             </a>
           </motion.p>
@@ -127,7 +127,7 @@ export default function AceMember() {
             General Member (Delegate) Registration — Now Open
           </motion.h3>
           <motion.p variants={itemVariants} className="mb-4 text-lg">
-            Complete the <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_pGgnT4ApYzyy1QqOouFcTP0WTYzL7UspVJ8iU26dma1AvQ/viewform?pli=1" target="_blank" className="underline hover:text-[#00205B]">Google Form</a>
+            Complete the <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_pGgnT4ApYzyy1QqOouFcTP0WTYzL7UspVJ8iU26dma1AvQ/viewform?pli=1" target="_blank" rel="noopener noreferrer" className="underline hover:text-[#00205B]">Google Form</a>
           </motion.p>
           <motion.p variants={itemVariants} className="mb-4 text-lg">
             Deadline: Friday, October 23, 2026
@@ -141,7 +141,7 @@ export default function AceMember() {
             variants={containerVariants}
             className="list-decimal pl-6 mb-6 space-y-1 text-lg"
           >
-            <motion.li variants={itemVariants}>Go to <a href="https://acenationals.ca/dev/memberRegistration" target="_blank" className="underline">https://acenationals.ca/dev/memberRegistration</a></motion.li>
+            <motion.li variants={itemVariants}>Go to <a href="https://acenationals.ca/dev/memberRegistration" target="_blank" rel="noopener noreferrer" className="underline">https://acenationals.ca/dev/memberRegistration</a></motion.li>
             <motion.li variants={itemVariants}>Scroll down on the homepage where you will find a register option under the “How Do I Get Involved?”</motion.li>
             <motion.li variants={itemVariants}>Sign in (if you already have an account)/Register as Student (if you don’t already have an account)</motion.li>
             <motion.li variants={itemVariants}>Fill in all fields (If you are making new account)</motion.li>

@@ -33,8 +33,8 @@ export default function Footer() {
             <Link to="/contact" className="hover:underline">Contact Us</Link>
           </div>
         <div className="mt-5 flex gap-5 items-center md:justify-end">
-            <a href="https://www.instagram.com/aceutsc/" target="_blank" rel="noreferrer" aria-label="Instagram"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" className="w-4 h-4 grayscale hover:grayscale-0 transition" /></a>
-            <a href="https://www.linkedin.com/company/ace-utsc/" target="_blank" rel="noreferrer" aria-label="LinkedIn"><img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" className="w-4 h-4 grayscale hover:grayscale-0 transition" /></a>
+            <a href="https://www.instagram.com/aceutsc/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" className="w-4 h-4 grayscale hover:grayscale-0 transition" /></a>
+            <a href="https://www.linkedin.com/company/ace-utsc/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" className="w-4 h-4 grayscale hover:grayscale-0 transition" /></a>
             <a href="mailto:ace.uoftscarborough@gmail.com" className="hover:underline opacity-90">Mail</a>
             <div className="text-xs text-white/60">© {new Date().getFullYear()} ACE UTSC</div>
           </div>

@@ -14,7 +14,7 @@ export default function OurTeam() {
             {members.map((m, idx) => (
               <div key={idx} className="group">
                 <div className="w-full overflow-hidden mb-3 rounded">
-                  <a href={m.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="block mb-0.5">
+                  <a href={m.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="block mb-0.5">
                     <GlareHover
                       width="100%"
                       height="auto"
@@ -32,7 +32,7 @@ export default function OurTeam() {
                     </GlareHover>
                   </a>
                 </div>
-                <a href={m.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="block mb-0.5">
+                <a href={m.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="block mb-0.5">
                   <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" className="w-4 h-4 grayscale group-hover:grayscale-0 transition" />
                 </a>
 

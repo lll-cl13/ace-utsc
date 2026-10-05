@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState, useEffect, useCallback, useLayoutEffect } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import GlareHover from '../components/GlareHover'
@@ -18,13 +18,60 @@ export default function Events() {
   const justDraggedRef = useRef(false)
   const [activeYear, setActiveYear] = useState(eventsByYear[0].id)
   const activeYearRef = useRef(activeYear)
-  activeYearRef.current = activeYear
+
+  useEffect(() => {
+    activeYearRef.current = activeYear
+  }, [activeYear])
+
   const [isSmallScreen, setIsSmallScreen] = useState(() => {
     if (typeof window !== 'undefined') {
       return window.innerWidth < 768 || window.innerHeight < 600
     }
     return false
   })
+
+  const updateActiveFromPosition = useCallback(() => {
+    const strip = stripRef.current
+    const stageEl = stageRef.current
+    if (!strip || !stageEl || isSmallScreen) return
+
+    const viewLeft = -currentXRef.current
+    let bestId = activeYearRef.current
+    let bestLeft = -Infinity
+
+    eventsByYear.forEach((section) => {
+      const el = yearRefs.current[section.id]
+      if (!el) return
+      const left = el.offsetLeft
+      if (left <= viewLeft + 1 && left > bestLeft) {
+        bestLeft = left
+        bestId = section.id
+      }
+    })
+
+    if (bestId && bestId !== activeYearRef.current) {
+      setActiveYear(bestId)
+    }
+  }, [isSmallScreen])
+
+  useLayoutEffect(() => {
+    if (isSmallScreen) return
+    const positionInitial = () => {
+      const firstId = eventsByYear[0]?.id
+      const targetEl = firstId ? yearRefs.current[firstId] : null
+      const strip = stripRef.current
+      const stageEl = stageRef.current
+      if (!targetEl || !strip || !stageEl) return
+      const offset = targetEl.offsetLeft
+      let targetX = -offset
+      const maxX = -(strip.scrollWidth - stageEl.offsetWidth + 100)
+      targetX = Math.max(maxX, Math.min(0, targetX))
+      gsap.set(strip, { x: targetX })
+      currentXRef.current = targetX
+      updateActiveFromPosition()
+    }
+    requestAnimationFrame(positionInitial)
+  }, [isSmallScreen, updateActiveFromPosition])
 
   // Build flat horizontal sequence: year blocks + event blocks
   const horizontalSlides = []
@@ -104,7 +151,7 @@ export default function Events() {
       gsap.set(strip, { x: next })
       updateActiveFromPosition()
     }
-    const onPointerEnd = (e) => {
+    const onPointerEnd = () => {
       const drag = dragRef.current
       if (!drag) return
       const didMove = drag.moved
@@ -160,7 +207,7 @@ export default function Events() {
       stage.removeEventListener('pointercancel', onPointerEnd)
       stage.removeEventListener('pointerleave', onPointerEnd)
     }
-  }, [isSmallScreen])
+  }, [isSmallScreen, updateActiveFromPosition])
 
   // Small screen detection + vertical fallback on small screens
   useEffect(() => {
@@ -199,32 +246,6 @@ export default function Events() {
     })
   }
 
-  // Compute which year is "active" based on current horizontal position.
-  // Active updates when a year reaches the middle of the viewport.
-  const updateActiveFromPosition = () => {
-    const strip = stripRef.current
-    const stageEl = stageRef.current
-    if (!strip || !stageEl || isSmallScreen) return
-
-    const viewFocus = -currentXRef.current - (stageEl.offsetWidth)
-    let bestId = activeYearRef.current
-    let bestDist = Infinity
-
-    eventsByYear.forEach((section) => {
-      const el = yearRefs.current[section.id]
-      if (!el) return
-      const dist = Math.abs(el.offsetLeft - viewFocus)
-      if (dist < bestDist) {
-        bestDist = dist
-        bestId = section.id
-      }
-    })
-
-    if (bestId && bestId !== activeYearRef.current) {
-      setActiveYear(bestId)
-    }
-  }
-
   // Continuously track position during/after wheel movements so bold/active in sidebar updates
   useEffect(() => {
     if (isSmallScreen) return
@@ -236,7 +257,7 @@ export default function Events() {
     }
     rafId = requestAnimationFrame(tick)
     return () => cancelAnimationFrame(rafId)
-  }, [isSmallScreen])
+  }, [isSmallScreen, updateActiveFromPosition])
 
   // Mobile: use IntersectionObserver on year sections to keep sidebar active in sync while scrolling vertically
   useEffect(() => {
@@ -273,11 +294,11 @@ export default function Events() {
   }, [isSmallScreen])
 
   return (
-    <div className={`flex flex-col bg-white ${!isSmallScreen ? 'flex-1 overflow-hidden' : ''}`}>
+    <div className={`flex flex-col bg-white ${!isSmallScreen ? 'flex-1 overflow-hidden min-h-0' : ''}`}>
       {/* Main stage — flex-1 takes remaining space. No vertical scroll on page. */}
       <div
         ref={stageRef}
-        className={`relative ${!isSmallScreen ? 'flex-1 overflow-hidden' : ''}`}
+        className={`relative ${!isSmallScreen ? 'flex-1 overflow-hidden min-h-0' : ''}`}
         style={!isSmallScreen ? { touchAction: 'none' } : undefined}
       >
         {!isSmallScreen ? (

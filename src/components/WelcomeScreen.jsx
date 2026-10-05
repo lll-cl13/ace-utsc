@@ -10,6 +10,7 @@ export default function WelcomeScreen({ onComplete }) {
   const [phase, setPhase] = useState('hold'); // 'hold' | 'expand' | 'exit'
   const doneRef = useRef(false);
   const timersRef = useRef([]);
+  const onCompleteRef = useRef(onComplete);
 
   const clearTimers = () => {
     timersRef.current.forEach(clearTimeout);
@@ -20,8 +21,12 @@ export default function WelcomeScreen({ onComplete }) {
     if (doneRef.current) return;
     doneRef.current = true;
     clearTimers();
-    onComplete();
+    onCompleteRef.current();
   };
+
+  useEffect(() => {
+    onCompleteRef.current = onComplete;
+  }, [onComplete]);
 
   useEffect(() => {
     timersRef.current = [

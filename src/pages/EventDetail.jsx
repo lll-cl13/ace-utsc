@@ -43,7 +43,7 @@ export default function EventDetail() {
           {ev.body}
           {ev.extra && (
             <p className="mt-4">
-              <a href={ev.extra} target="_blank" rel="noreferrer" className="underline">
+              <a href={ev.extra} target="_blank" rel="noopener noreferrer" className="underline">
                 View on Instagram →
               </a>
             </p>
@@ -94,7 +94,7 @@ export default function EventDetail() {
                    transitionDuration={800}
                    playOnce={true}
                  >
-                   <img src={src} alt="" className="w-full" />
+                    <img src={src} alt={ev.title} className="w-full" />
                  </GlareHover>
                </div>
              ))}

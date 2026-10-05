@@ -60,6 +60,7 @@ const LineSidebar = ({
   // Make defaultActive controlled: update internal active when prop changes (e.g. from scroll/parent)
   useEffect(() => {
     if (defaultActive != null) {
+      // oxlint-disable-next-line react/set-state-in-effect
       setActiveIndex(defaultActive);
     }
   }, [defaultActive]);
@@ -67,14 +68,16 @@ const LineSidebar = ({
   const tickRefs = useRef([]);
   const tickIndicesRef = useRef([]);
 
-  activeRef.current = activeIndex;
-  smoothingRef.current = smoothing;
-  scaleTickRef.current = scaleTick;
+  useEffect(() => {
+    activeRef.current = activeIndex;
+    smoothingRef.current = smoothing;
+    scaleTickRef.current = scaleTick;
+  }, [activeIndex, smoothing, scaleTick]);
 
   // Single rAF loop that eases every item's --effect toward its target using
   // frame-rate independent exponential smoothing, so color, shift and scale
   // all move together without staggering CSS transitions.
-  const runFrame = useCallback(now => {
+  const runFrame = useCallback(function runFrame(now) {
     const dt = Math.min((now - lastRef.current) / 1000, 0.05);
     lastRef.current = now;
     const tau = Math.max(smoothingRef.current, 1) / 1000;
