@@ -328,7 +328,7 @@ export default function Events() {
                       }}
                       className={`flex-shrink-0 w-[min(46vw,460px)] h-full flex items-center ${isFirst ? 'justify-start' : 'justify-center ml-16 md:ml-24'} select-none`}
                     >
-                      <div className="pl-4 md:pl-8 text-[58px] md:text-[72px] font-semibold tracking-[-3.5px] leading-[0.86] text-[#00205B]">
+                      <div className="pl-4 md:pl-8 text-[58px] md:text-[72px] font-semibold tracking-[-3.5px] leading-[0.86] text-[#09346A]">
                         {slide.year.split('–').map((p, i) => (
                           <div key={i}>{p.trim()}</div>
                         ))}
@@ -356,7 +356,7 @@ export default function Events() {
 <div className="text-[13px] font-semibold tracking-[-0.2px] leading-tight transition-all duration-200 group-hover:underline group-hover:decoration-1 group-hover:underline-offset-1 group-hover:font-bold">
                            {slide.title}
                          </div>
-<div className="mt-0.5 text-[9px] text-[#00205B]/70 space-y-[1px]">
+<div className="mt-0.5 text-[9px] text-[#09346A]/70 space-y-[1px]">
                            <div className="transition-all duration-200 group-hover:underline group-hover:decoration-1 group-hover:underline-offset-1 group-hover:font-bold">📅 {slide.date}</div>
                            <div className="transition-all duration-200 group-hover:underline group-hover:decoration-1 group-hover:underline-offset-1 group-hover:font-bold">📍 {slide.location}</div>
                          </div>
@@ -372,7 +372,7 @@ export default function Events() {
           <div className="px-[45px] pt-4 pb-12">
             {eventsByYear.map((section) => (
               <div key={section.id} id={`m-year-${section.id}`} className="mb-10">
-                <div className="text-center text-[48px] font-semibold tracking-[-2.2px] leading-none text-[#00205B] mb-5">
+                <div className="text-center text-[48px] font-semibold tracking-[-2.2px] leading-none text-[#09346A] mb-5">
                   {section.year.split('–').map((p, i) => <div key={i}>{p.trim()}</div>)}
                 </div>
 
@@ -397,7 +397,7 @@ export default function Events() {
                     </div>
                     <div className="mt-3">
                       <div className="text-[18px] font-semibold tracking-[-0.2px] transition-all duration-200 group-hover:underline group-hover:decoration-1 group-hover:underline-offset-1 group-hover:font-bold">{ev.title}</div>
-<div className="mt-1 text-[13px] text-[#00205B]/70">
+<div className="mt-1 text-[13px] text-[#09346A]/70">
                           <span className="transition-all duration-200 group-hover:underline group-hover:decoration-1 group-hover:underline-offset-1">📅 {ev.date}</span><br />
                           <span className="transition-all duration-200 group-hover:underline group-hover:decoration-1 group-hover:underline-offset-1">📍 {ev.location}</span>
                         </div>
@@ -411,7 +411,7 @@ export default function Events() {
       </div>
 
       {/* Linebar always visible at bottom */}
-      <div className="border-t border-[#00205B]/10 bg-white/95 backdrop-blur-sm px-[45px] py-1 min-h-[42px] flex-shrink-0">
+      <div className="border-t border-[#09346A]/10 bg-white/95 backdrop-blur-sm px-[45px] py-1 min-h-[42px] flex-shrink-0">
         <div>
           <LineSidebar
             items={eventsByYear.map(y => y.year)}
@@ -424,9 +424,9 @@ export default function Events() {
             tickScale={0.5}
             itemGap={24}
             minorTicks={20}
-            accentColor="#00205B"
-            textColor="#00205B"
-            markerColor="#00205B"
+            accentColor="#09346A"
+            textColor="#09346A"
+            markerColor="#09346A"
             fontSize={0.62}
             maxShift={2}
             smoothing={80}

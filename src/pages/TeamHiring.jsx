@@ -76,7 +76,7 @@ export default function TeamHiring() {
             variants={itemVariants}
             className="mt-4"
           >
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdk8Yn5g9RjuPGoBQl5zXsldDGTJPAnlZ_KBFKNpYhOcXz2Iw/viewform" target="_blank" rel="noopener noreferrer" className="underline hover:text-[#00205B]">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdk8Yn5g9RjuPGoBQl5zXsldDGTJPAnlZ_KBFKNpYhOcXz2Iw/viewform" target="_blank" rel="noopener noreferrer" className="underline hover:text-[#09346A]">
               APPLY HERE! →
             </a>
             </motion.p>

@@ -21,7 +21,7 @@ export default function EventDetail() {
         <div>
           <Link
             to="/events"
-            className="text-sm underline mb-4 inline-block hover:text-[#00205B]"
+            className="text-sm underline mb-4 inline-block hover:text-[#09346A]"
           >
             ← All Events
           </Link>

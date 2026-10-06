@@ -74,7 +74,7 @@ export default function Home() {
         className="fixed inset-0 z-[0] bg-cover bg-center pointer-events-none"
         style={{ backgroundImage: 'url("/img/background-tower.jpeg")' }}
       />
-      <div className="fixed inset-0 z-[0] bg-[#09346A]/20 pointer-events-none" />
+      <div className="fixed inset-0 z-[0] bg-[#09346A]/24 pointer-events-none" />
 
       <div className="-mt-16 relative z-[10]">
         {/* Hero content */}
@@ -82,7 +82,7 @@ export default function Home() {
         <div className="h-screen flex items-center justify-center text-white">
           <div className="text-center">
             <img
-              src="/img/ace-utsc-logo-1.png"
+              src="/img/icon/ace-utsc-logo-1.png"
               alt="ACE UTSC Logo"
               className="mx-auto h-20 md:h-30"
             />
@@ -163,7 +163,6 @@ export default function Home() {
                   />
               </Link>
             </div>
-             <hr className="border-white/20" />
                 {/* Stats: numbers & tiny text (animated, grid: two on top, one down) */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-y-8 text-center px-4 py-20  bg-[#09346A]/90"> 
                   {[
@@ -181,7 +180,6 @@ export default function Home() {
                     </div>
                   ))}
                 </div>
-             <hr className="border-white/20" />
          </div>
 
         {/* Achievements, Events & Partnerships — one unified section */}
@@ -222,7 +220,7 @@ export default function Home() {
            >
              <div className="achievement-image w-full aspect-[4/3] overflow-hidden">
                  <img
-                   src="/img/img_0204.jpeg"
+                   src="/img/event.jpeg"
                    alt="Events"
                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.1]"
                  /> 
@@ -232,7 +230,7 @@ export default function Home() {
                <p className="text-xl leading-relaxed text-[#333]">
                  We run <strong>ACE Invitationals</strong>, <strong>ACE Chronicles</strong>, and <strong>ELA</strong> — events designed to equip students with the skills and experiences needed to succeed in the workplace.
                </p>
-               <p className="mt-3 text-4sm"><Link to="/events" className="underline decoration-1 underline-offset-2 hover:text-[#00205B]">See all events →</Link></p>
+               <p className="mt-3 text-4sm"><Link to="/events" className="underline decoration-1 underline-offset-2 hover:text-[#09346A]">See all events →</Link></p>
              </div>
            </div>
 
@@ -244,7 +242,7 @@ export default function Home() {
              <div className="achievement-image w-full aspect-[4/3] overflow-hidden">
                  <img
                    src="/img/events/2324_AceInvitationals_4.jpg"
-                   alt="UTSC Campus"
+                   alt="Sponsors & Partnerships"
                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.1]"
                  />
              </div>

@@ -39,7 +39,7 @@ export default function About() {
           </div>
           <div className="order-1 md:order-2">
             <img
-              src="/img/img_8418.jpeg"
+              src="/img/about/img_8418.jpeg"
               alt="Our Mission"
               className="w-full rounded-2xl"
             />
@@ -55,25 +55,25 @@ export default function About() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8 text-center ">
           <div className="mb-6 md:mb-0 hover:scale-105 hover:underline transition-transform duration-300">
             <a href="https://www.ey.com/" target="_blank" rel="noopener noreferrer">
-              <img src="/img/552707593_1483908372940497_6092641396353532351_n.jpg" alt="EY" className="h-50 md:h-100 mx-auto object-contain mb-3 hover:shadow-sm rounded-2xl" />
+              <img src="/img/about/552707593_1483908372940497_6092641396353532351_n.jpg" alt="EY" className="h-50 md:h-50 mx-auto object-contain mb-3 hover:shadow-sm rounded-2xl" />
             </a>
             <div className="font-semibold text-base md:text-lg">EY</div>
           </div>
           <div className="mb-6 md:mb-0 hover:scale-105 hover:underline transition-transform duration-300">
             <a href="https://mmpa.utoronto.ca" target="_blank" rel="noopener noreferrer">
-              <img src="/img/553043371_817168714099790_9159688809164605491_n_resized.jpg" alt="UofT MMPA" className="h-50 md:h-100 mx-auto object-contain mb-3 border-radius: 8px hover:shadow-sm rounded-2xl" />
+              <img src="/img/about/553043371_817168714099790_9159688809164605491_n_resized.jpg" alt="UofT MMPA" className="h-50 md:h-50 mx-auto object-contain mb-3 border-radius: 8px hover:shadow-sm rounded-2xl" />
             </a>
             <div className="font-semibold text-base md:text-lg">UofT MMPA</div>
           </div>
           <div className="mb-6 md:mb-0 hover:scale-105 hover:underline transition-transform duration-300">
             <a href="https://icubeutm.ca" target="_blank" rel="noopener noreferrer">
-              <img src="/img/554337631_4164718567180340_6030518401904829660_n_cropped_cropped_resized.png" alt="ICUBE UTM" className="h-50 md:h-100 mx-auto object-contain mb-3 hover:shadow-sm rounded-2xl" />
+              <img src="/img/about/554337631_4164718567180340_6030518401904829660_n_cropped_cropped_resized.png" alt="ICUBE UTM" className="h-50 md:h-50 mx-auto object-contain mb-3 hover:shadow-sm rounded-2xl" />
             </a>
             <div className="font-semibold text-base md:text-lg">ICUBE UTM</div>
           </div>
           <div className="mb-6 md:mb-0 hover:scale-105 hover:underline transition-transform duration-300">
             <a href="https://cfatoronto.ca/" target="_blank" rel="noopener noreferrer">
-              <img src="/img/553754636_1981939729254480_7985881626194828189_n_resized.jpg" alt="the CFA Society" className="h-50 md:h-100 mx-auto object-contain mb-3 hover:shadow-sm rounded-2xl" />
+              <img src="/img/about/553754636_1981939729254480_7985881626194828189_n_resized.jpg" alt="the CFA Society" className="h-50 md:h-50 mx-auto object-contain mb-3 hover:shadow-sm rounded-2xl" />
             </a>
             <div className="font-semibold text-base md:text-lg">CFA Society</div>
           </div>

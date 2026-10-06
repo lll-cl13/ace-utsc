@@ -29,21 +29,21 @@ const itemVariants = {
 
 const carouselItems = [
   {
-    image: '/img/Member1.jpg',
-    alt: 'ACE UTSC Banner',
+    image: '/img/delegate/LargestChapterGrowth.jpg',
+    alt: 'ACE Nationals Largest Chapter Growth Award',
   },
   {
-    image: '/img/ace-nationals-2024-1.png',
-    alt: 'ACE Nationals 2024',
+    image: '/img/AceNationalsEdited.jpeg',
+    alt: 'ACE Nationals 2025 Winners',
   },
   {
-    image: '/img/img_2725-1.jpg',
-    alt: 'Event Photo',
+    image: '/img/delegate/ace-nationals-2024-1.png',
+    alt: 'ACE Nationals 2024 Winners',
   },
   {
-    image: '/img/events/2324_AceInvitationals_2.png',
-    alt: 'Event Photo',
-  },
+    image: '/img/delegate/Member1.jpg',
+    alt: 'ACE Nationals',
+  }
 ];
 
 export default function AceMember() {
@@ -79,12 +79,12 @@ export default function AceMember() {
           </motion.p>
           {/* adjust to preview later */}
           <motion.p variants={itemVariants} className="mb-6 text-lg leading-relaxed">
-            <a href="https://pdflink.to/aceutscdelegatehandbook/" target="_blank" rel="noopener noreferrer" className="underline hover:text-[#00205B]">
-              <img src="/img/delegate_handbook.png" alt="Delegate Handbook" className="w-full max-w-lg mx-auto mt-4" />
+            <a href="https://pdflink.to/aceutscdelegatehandbook/" target="_blank" rel="noopener noreferrer" className="underline hover:text-[#09346A]">
+              <img src="/img/delegate/delegate_handbook.png" alt="Delegate Handbook" className="w-full max-w-lg mx-auto mt-4" />
             </a>
           </motion.p> 
           <motion.p variants={itemVariants} className="mb-8 text-2sm">
-            <a href="https://pdflink.to/aceutscdelegatehandbook/" target="_blank" rel="noopener noreferrer" className="underline hover:text-[#00205B]">
+            <a href="https://pdflink.to/aceutscdelegatehandbook/" target="_blank" rel="noopener noreferrer" className="underline hover:text-[#09346A]">
               View Our Delegate Package →
             </a>
           </motion.p>
@@ -112,9 +112,9 @@ export default function AceMember() {
               loop
               cardWidth={800}
               cardHeight={480}
-              radius={12}
+              radius={0}
               tint="#05060a"
-              duration={650}
+              duration={800}
               ease="power3.out"
               autoplayDelay={1500}
               showIndicators
@@ -127,7 +127,7 @@ export default function AceMember() {
             General Member (Delegate) Registration — Now Open
           </motion.h3>
           <motion.p variants={itemVariants} className="mb-4 text-lg">
-            Complete the <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_pGgnT4ApYzyy1QqOouFcTP0WTYzL7UspVJ8iU26dma1AvQ/viewform?pli=1" target="_blank" rel="noopener noreferrer" className="underline hover:text-[#00205B]">Google Form</a>
+            Complete the <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_pGgnT4ApYzyy1QqOouFcTP0WTYzL7UspVJ8iU26dma1AvQ/viewform?pli=1" target="_blank" rel="noopener noreferrer" className="underline hover:text-[#09346A]">Google Form</a>
           </motion.p>
           <motion.p variants={itemVariants} className="mb-4 text-lg">
             Deadline: Friday, October 23, 2026

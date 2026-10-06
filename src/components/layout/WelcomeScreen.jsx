@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import './WelcomeScreen.css';
 
-const LOGO_SRC = '/img/ACEUTSC.png';
+const LOGO_SRC = '/img/icon/ACEUTSC.png';
 const TOTAL_MS = 6000;
 const EXPAND_AT_MS = 3000;
 const EXIT_AT_MS = 5000; 

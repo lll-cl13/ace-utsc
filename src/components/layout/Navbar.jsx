@@ -40,23 +40,23 @@ export default function Navbar() {
       <div className={`${isDarkPage ? '' : 'bg-white'} px-[45px] flex items-center justify-between h-16`}>
         <Link to="/" className="flex items-center gap-3">
           <img
-            src="/img/ace-utsc-logo-1.png"
+            src="/img/icon/ace-utsc-logo-1.png"
             alt="ACE UTSC"
             className="h-9 w-auto"
           />
-          <span className={`text-sm tracking-tight hover:underline font-['League Spartan',sans-serif] text-[#00205B] hover:text-[#00205B]/70`}>ACE UTSC</span>
+          <span className={`text-sm tracking-tight hover:underline font-['League Spartan',sans-serif] text-[#09346A] hover:text-[#09346A]/70`}>ACE UTSC</span>
         </Link>
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8 text-sm font-medium">
           {navLinks.map((l) => (
-            <Link key={l.to} to={l.to} className={`transition-colors hover:underline underline-offset-4 ${isActive(l.to) ? 'underline' : ''} ${isDarkPage ? `${darkText} hover:text-white/80` : 'text-[#00205B] hover:text-[#00205B]/70'}`}>
+            <Link key={l.to} to={l.to} className={`transition-colors hover:underline underline-offset-4 ${isActive(l.to) ? 'underline' : ''} ${isDarkPage ? `${darkText} hover:text-white/80` : 'text-[#09346A] hover:text-[#09346A]/70'}`}>
               {l.label}
             </Link>
           ))}
 
           <div className="relative" onMouseEnter={openJoin} onMouseLeave={closeJoin}>
-            <button className={`flex items-center gap-1 transition-colors hover:underline underline-offset-4 ${isJoinActive ? 'underline' : ''} ${isDarkPage ? `${darkText} hover:text-white/80` : 'text-[#00205B] hover:text-[#00205B]/70'}`}>
+            <button className={`flex items-center gap-1 transition-colors hover:underline underline-offset-4 ${isJoinActive ? 'underline' : ''} ${isDarkPage ? `${darkText} hover:text-white/80` : 'text-[#09346A] hover:text-[#09346A]/70'}`}>
               Join Us
               <span className="text-xs">▼</span>
             </button>
@@ -75,17 +75,17 @@ export default function Navbar() {
             )}
           </div>
 
-          <Link to="/our-team-2025-2026" className={`transition-colors hover:underline underline-offset-4 ${isActive('/our-team-2025-2026') ? 'underline' : ''} ${isDarkPage ? `${darkText} hover:text-white/80` : 'text-[#00205B] hover:text-[#00205B]/70'}`}>
+          <Link to="/our-team-2025-2026" className={`transition-colors hover:underline underline-offset-4 ${isActive('/our-team-2025-2026') ? 'underline' : ''} ${isDarkPage ? `${darkText} hover:text-white/80` : 'text-[#09346A] hover:text-[#09346A]/70'}`}>
             Our Team
           </Link>
-          <Link to="/contact" className={`transition-colors hover:underline underline-offset-4 ${isActive('/contact') ? 'underline' : ''} ${isDarkPage ? `${darkText} hover:text-white/80` : 'text-[#00205B] hover:text-[#00205B]/70'}`}>
+          <Link to="/contact" className={`transition-colors hover:underline underline-offset-4 ${isActive('/contact') ? 'underline' : ''} ${isDarkPage ? `${darkText} hover:text-white/80` : 'text-[#09346A] hover:text-[#09346A]/70'}`}>
             Contact Us
           </Link>
         </div>
 
         {/* Mobile hamburger */}
         <button
-          className={`md:hidden text-2xl ${isDarkPage ? darkText : 'text-[#00205B]'}`}
+          className={`md:hidden text-2xl ${isDarkPage ? darkText : 'text-[#09346A]'}`}
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
         >
@@ -95,7 +95,7 @@ export default function Navbar() {
  
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className={`md:hidden border-t px-[45px] py-4 flex flex-col gap-3 text-sm ${isDarkPage ? 'bg-[#120F17] text-white' : 'bg-white text-[#00205B]'}`}>
+        <div className={`md:hidden border-t px-[45px] py-4 flex flex-col gap-3 text-sm ${isDarkPage ? 'bg-[#120F17] text-white' : 'bg-white text-[#09346A]'}`}>
           {navLinks.map((l) => (
             <Link key={l.to} to={l.to} onClick={() => setMobileOpen(false)} className={`hover:underline underline-offset-2 ${isActive(l.to) ? 'underline' : ''}`}>{l.label}</Link>
           ))}

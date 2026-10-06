@@ -91,7 +91,7 @@ export default function Contact() {
           <motion.a
             variants={itemVariants}
             href="mailto:ace.uoftscarborough@gmail.com"
-            className="inline-block px-6 py-2.5 bg-[#00205B] text-white text-sm font-medium rounded-md hover:bg-[#001a47] transition-colors"
+            className="inline-block px-6 py-2.5 bg-[#09346A] text-white text-sm font-medium rounded-md hover:bg-[#001a47] transition-colors"
             whileHover={{ scale: 1.01 }}
             whileTap={{ scale: 0.985 }}
           >

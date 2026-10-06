@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { useState } from 'react'
-import Navbar from './components/Navbar'
-import Footer from './components/Footer'
+import Navbar from './components/layout/Navbar'
+import Footer from './components/layout/Footer'
 import Home from './pages/Home'
 import About from './pages/About'
 import Events from './pages/Events'
@@ -10,7 +10,7 @@ import TeamHiring from './pages/TeamHiring'
 import OurTeam from './pages/OurTeam'
 import Contact from './pages/Contact'
 import EventDetail from './pages/EventDetail'
-import WelcomeScreen from './components/WelcomeScreen';
+import WelcomeScreen from './components/layout/WelcomeScreen';
 
 function Layout({ children }) {
   return (

@@ -12,7 +12,7 @@ export default function Footer() {
         <div>
           <div className="flex items-center gap-2 mb-4">
             <img
-              src="/img/ACEUTSC.png"
+              src="/img/icon/ACEUTSC.png"
               alt="ACE UTSC"
               className="h-6"
             />
